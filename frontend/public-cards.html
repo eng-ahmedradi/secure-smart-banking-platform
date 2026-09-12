@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>البطاقات المصرفية - SecureBank</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/global.css">
+    <link rel="stylesheet" href="assets/css/public-cards.css">
+</head>
+<body>
+
+    <!-- الهيدر الموحد -->
+    <header class="site-header">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <span class="bank-icon">🏦</span>
+                <span class="bank-name">SecureBank</span>
+            </a>
+
+            <nav class="main-nav">
+                <a href="index.html">الرئيسية</a>
+                <a href="services.html">الخدمات المصرفية</a>
+                <a href="calculator.html">حاسبة التمويل</a>
+                <a href="public-cards.html" class="active">البطاقات</a>
+                <a href="about.html">عن البنك</a>
+            </nav>
+
+            <div class="header-actions">
+                <a href="login.html" class="btn-login-outline">تسجيل الدخول</a>
+                <a href="register.html" class="btn-register-solid">افتح حسابك الآن</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- بانر الصفحة العلوي المطور -->
+    <section class="cards-hero-banner">
+        <div class="banner-bg" style="background-image: url('assets/images/card1.avif');"></div>
+        <div class="banner-overlay"></div>
+        
+        <div class="container banner-content">
+            <span class="banner-badge">حلول الدفع الذكية</span>
+            <h1 class="banner-title">قوة شرائية وأمان مالي أينما كنت حول العالم</h1>
+            <p class="banner-desc">
+                اختر البطاقة التي تناسب تطلعاتك ونمط حياتك؛ من فترات السماح المرنة وباقات السفر الفاخرة، إلى التحكم اللحظي الكامل من هاتفك.
+            </p>
+            <div class="banner-highlights">
+                <span>🛡️ تأمين شامل ضد الاحتيال</span>
+                <span>⚡ دفع لاتلامسي Contactless</span>
+                <span>🎁 نقاط مكافآت مضاعفة</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- المحتوى الرئيسي للبطاقات -->
+    <main class="cards-main-container container">
+        
+        <!-- أزرار التصفية السريعة -->
+        <div class="card-type-wrapper">
+            <div class="card-type-tabs">
+                <button type="button" class="tab-btn active" data-filter="all">جميع البطاقات المصرفية</button>
+                <button type="button" class="tab-btn" data-filter="credit">البطاقات الائتمانية</button>
+                <button type="button" class="tab-btn" data-filter="debit">الخصم المباشر (Debit)</button>
+                <button type="button" class="tab-btn" data-filter="business">بطاقات الشركات</button>
+                <button type="button" class="tab-btn" data-filter="prepaid">مسبقة الدفع (Meeza)</button>
+            </div>
+        </div>
+
+        <!-- شبكة البطاقات الأربعة التفاعلية (4 Columns Grid) -->
+        <div class="cards-grid-four">
+            
+            <!-- بطاقة 1: فيزا بلاتينيوم الائتمانية -->
+            <div class="card-product-box" data-category="credit">
+                <div class="tilt-card-container">
+                    <div class="mock-card-visual platinum">
+                        <div class="card-glass-shine"></div>
+                        <div class="m-card-top">
+                            <span class="m-brand">SecureBank</span>
+                            <span class="m-network">VISA</span>
+                        </div>
+                        <div class="m-chip"></div>
+                        <div class="m-number">•••• •••• •••• 4490</div>
+                        <div class="m-bottom">
+                            <div>
+                                <small>حامل البطاقة</small>
+                                <strong>PLATINUM CLIENT</strong>
+                            </div>
+                            <div class="m-exp">
+                                <small>صالح حتى</small>
+                                <strong>08/29</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-product-info">
+                    <span class="card-tag-badge badge-dark">الأكثر تميزاً</span>
+                    <h3>فيزا بلاتينيوم الائتمانية</h3>
+                    <p>أعلى سقف ائتماني مع مزايا السفر والدخول المجاني لصالات كبار الزوار حول العالم.</p>
+                    <ul class="perks-list">
+                        <li>حد ائتماني يصل إلى <strong>250,000 ج.م</strong></li>
+                        <li>فترة سماح بدون فوائد حتى <strong>57 يوماً</strong></li>
+                        <li>تقسيط بدون فوائد لدى شبكة واسعة من المتاجر</li>
+                    </ul>
+                    <button type="button" class="btn-order-card" data-card="فيزا بلاتينيوم الائتمانية">طلب البطاقة الآن</button>
+                </div>
+            </div>
+
+            <!-- بطاقة 2: ماستركارد تيتانيوم للخصم المباشر -->
+            <div class="card-product-box" data-category="debit">
+                <div class="tilt-card-container">
+                    <div class="mock-card-visual titanium">
+                        <div class="card-glass-shine"></div>
+                        <div class="m-card-top">
+                            <span class="m-brand">SecureBank</span>
+                            <span class="m-network">Mastercard</span>
+                        </div>
+                        <div class="m-chip"></div>
+                        <div class="m-number">•••• •••• •••• 7120</div>
+                        <div class="m-bottom">
+                            <div>
+                                <small>حامل البطاقة</small>
+                                <strong>TITANIUM DEBIT</strong>
+                            </div>
+                            <div class="m-exp">
+                                <small>صالح حتى</small>
+                                <strong>11/28</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-product-info">
+                    <span class="card-tag-badge badge-blue">معاملاتك اليومية</span>
+                    <h3>ماستركارد تيتانيوم للخصم</h3>
+                    <p>مرتبطة بحسابك الجاري أو التوفير لإجراء كافة المدفوعات اليومية وسحب الكاش.</p>
+                    <ul class="perks-list">
+                        <li>سحب مجاني من جميع ماكينات الصراف الآلي</li>
+                        <li>دفع لاتلامسي سريع ومؤمن للمشتريات اليومية</li>
+                        <li>إشعارات وتنبيهات فورية بعد كل عملية شراء</li>
+                    </ul>
+                    <button type="button" class="btn-order-card" data-card="ماستركارد تيتانيوم للخصم المباشر">طلب البطاقة الآن</button>
+                </div>
+            </div>
+
+            <!-- بطاقة 3: بطاقة الشركات والأعمال (البطاقة الرابعة المضافة) -->
+            <div class="card-product-box" data-category="business">
+                <div class="tilt-card-container">
+                    <div class="mock-card-visual gold">
+                        <div class="card-glass-shine"></div>
+                        <div class="m-card-top">
+                            <span class="m-brand">SecureBank Business</span>
+                            <span class="m-network">VISA</span>
+                        </div>
+                        <div class="m-chip"></div>
+                        <div class="m-number">•••• •••• •••• 8831</div>
+                        <div class="m-bottom">
+                            <div>
+                                <small>حساب المنشأة</small>
+                                <strong>CORPORATE VIP</strong>
+                            </div>
+                            <div class="m-exp">
+                                <small>صالح حتى</small>
+                                <strong>04/30</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-product-info">
+                    <span class="card-tag-badge badge-gold">قطاع الأعمال</span>
+                    <h3>فيزا الذهبية للشركات</h3>
+                    <p>إدارة مصروفات العمل ومشتريات الشركات وفواتير السفر للموظفين بكفاءة وسلاسة.</p>
+                    <ul class="perks-list">
+                        <li>حدود صرف مرتفعة مصممة لاحتياجات المؤسسات</li>
+                        <li>فصل مصروفات العمل عن الحسابات الشخصية</li>
+                        <li>تقارير ومطابقات محاسبية مفصلة بنهاية كل شهر</li>
+                    </ul>
+                    <button type="button" class="btn-order-card" data-card="فيزا الذهبية للشركات">طلب بطاقة شركة</button>
+                </div>
+            </div>
+
+            <!-- بطاقة 4: ميزة مسبقة الدفع -->
+            <div class="card-product-box" data-category="prepaid">
+                <div class="tilt-card-container">
+                    <div class="mock-card-visual emerald">
+                        <div class="card-glass-shine"></div>
+                        <div class="m-card-top">
+                            <span class="m-brand">SecureBank Smart</span>
+                            <span class="m-network">Meeza</span>
+                        </div>
+                        <div class="m-chip"></div>
+                        <div class="m-number">•••• •••• •••• 1039</div>
+                        <div class="m-bottom">
+                            <div>
+                                <small>حامل البطاقة</small>
+                                <strong>MEEZA PREPAID</strong>
+                            </div>
+                            <div class="m-exp">
+                                <small>صالح حتى</small>
+                                <strong>05/27</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-product-info">
+                    <span class="card-tag-badge badge-green">بدون حساب بنكي</span>
+                    <h3>بطاقة ميزة مسبقة الدفع</h3>
+                    <p>الحل الأمثل للتسوق الإلكتروني الآمن وسداد الفواتير والمدفوعات الحكومية.</p>
+                    <ul class="perks-list">
+                        <li>إصدار فوري بالرقم القومي فقط وبدون شروط دخل</li>
+                        <li>إعادة شحن لحظية عبر تطبيق الهاتف أو الإيداع</li>
+                        <li>سداد محمي للمدفوعات والخدمات الرقمية بمصر</li>
+                    </ul>
+                    <button type="button" class="btn-order-card" data-card="بطاقة ميزة مسبقة الدفع">طلب البطاقة الآن</button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- جدول المقارنة التفصيلي المطور -->
+        <section class="comparison-section">
+            <div class="section-heading">
+                <span class="sub-heading">جدول المقارنة الذكي</span>
+                <h2>المواصفات الفنية والشروط لكل بطاقة</h2>
+                <p>تعرف على الفروق بدقة لتختار البطاقة التي تناسبك</p>
+            </div>
+            
+            <div class="table-wrapper">
+                <table class="cards-compare-table">
+                    <thead>
+                        <tr>
+                            <th>المعيار</th>
+                            <th>فيزا بلاتينيوم (ائتمان)</th>
+                            <th>ماستركارد (خصم مباشر)</th>
+                            <th>فيزا الذهبية (شركات)</th>
+                            <th>ميزة (مسبقة الدفع)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>الحد الأقصى للرصيد</strong></td>
+                            <td>حتى 250,000 ج.م</td>
+                            <td>مرتبط برصيد الحساب</td>
+                            <td>حتى 500,000 ج.م</td>
+                            <td>حتى 50,000 ج.م شهرياً</td>
+                        </tr>
+                        <tr>
+                            <td><strong>فترة السماح بدون فائدة</strong></td>
+                            <td>تصل إلى 57 يوماً</td>
+                            <td>خصم فوري مباشر</td>
+                            <td>تصل إلى 45 يوماً</td>
+                            <td>خصم فوري مباشر</td>
+                        </tr>
+                        <tr>
+                            <td><strong>يتطلب حساب بنكي مسبق؟</strong></td>
+                            <td>نعم (أو إثبات دخل)</td>
+                            <td>نعم (حساب جاري أو توفير)</td>
+                            <td>نعم (حساب شركة نشط)</td>
+                            <td>لا يشترط فتح حساب</td>
+                        </tr>
+                        <tr>
+                            <td><strong>المشتريات الدولية عبر الإنترنت</strong></td>
+                            <td>متاح ومفعل دولياً</td>
+                            <td>متاح بالعملة المحلية</td>
+                            <td>متاح ومفعل دولياً</td>
+                            <td>محلي فقط (داخل مصر)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>دخول صالات المطارات</strong></td>
+                            <td>مجاني (أكثر من 25 مطار)</td>
+                            <td>غير مشمول</td>
+                            <td>متاح لكبار التنفيذيين</td>
+                            <td>غير مشمول</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <!-- نافذة طلب البطاقة المنبثقة المحدثة -->
+    <div id="card-modal" class="modal-overlay hidden">
+        <div class="modal-card">
+            <div class="modal-header">
+                <div>
+                    <h3>تقديم طلب إصدار بطاقة مصرفية</h3>
+                    <small>املأ البيانات وسيقوم ممثل البنك بالتواصل معك</small>
+                </div>
+                <button type="button" id="close-card-modal" class="close-btn">&times;</button>
+            </div>
+            <form id="card-request-form">
+                <div class="form-group">
+                    <label>البطاقة التي اخترتها</label>
+                    <input type="text" id="selected-card-name" readonly class="input-readonly">
+                </div>
+                <div class="form-group">
+                    <label for="applicant-name">الاسم الرباعي (كما هو بالرقم القومي)</label>
+                    <input type="text" id="applicant-name" placeholder="أدخل اسمك كاملاً" required>
+                </div>
+                <div class="form-group">
+                    <label for="applicant-phone">رقم الهاتف المحمول المسجل</label>
+                    <input type="tel" id="applicant-phone" placeholder="01xxxxxxxxx" required>
+                </div>
+                <div class="form-group">
+                    <label for="nearest-branch">فرع الاستلام المفضل</label>
+                    <select id="nearest-branch">
+                        <option>فرع القاهرة الجديدة (شارع التسعين)</option>
+                        <option>فرع مدينة نصر (عباس العقاد)</option>
+                        <option>فرع المهندسين (جامعة الدول العربية)</option>
+                        <option>فرع الإسكندرية (سموحة)</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-confirm-apply">تأكيد إرسال طلب البطاقة ←</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- الفوتر الموحد -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <div class="logo white">
+                    <span class="bank-icon">🏦</span>
+                    <span class="bank-name">SecureBank</span>
+                </div>
+                <p>البنك الرقمي الرائد في تقديم الحلول المصرفية السحابية الآمنة تحت إشراف ورقابة البنك المركزي المصري.</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>روابط سريعة</h4>
+                <ul>
+                    <li><a href="services.html">الخدمات المصرفية</a></li>
+                    <li><a href="calculator.html">حاسبة التمويل</a></li>
+                    <li><a href="public-cards.html">البطاقات</a></li>
+                    <li><a href="about.html">عن البنك</a></li>
+                    <li><a href="login.html">تسجيل الدخول</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>مركز المساعدة</h4>
+                <p>الخط الساخن: <strong>19888</strong> (متاح 24/7)</p>
+                <p>البريد: <strong>cards@securebank.com</strong></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 SecureBank. جميع الحقوق محفوظة ومسجلة رسمياً.</p>
+        </div>
+    </footer>
+
+    <script src="assets/js/main-nav.js"></script>
+    <script src="assets/js/public-cards.js"></script>
+</body>
+</html>

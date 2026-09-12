@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم المصرفية - SecureBank</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/dashboard.css">
+    <!-- استدعاء ملف فحص الأمان أول حاجة لحماية الصفحة فوراً -->
+    <script src="assets/js/auth.js"></script>
+</head>
+<body>
+
+    <!-- الشريط الجانبي (Sidebar) -->
+    <aside class="sidebar">
+        <div class="sidebar-brand">
+            <span class="bank-icon">🏦</span>
+            <h2>SecureBank</h2>
+        </div>
+
+        <nav class="nav-menu">
+            <a href="dashboard.html" class="nav-item active">
+                <span class="icon">📊</span>
+                <span>لوحة التحكم</span>
+            </a>
+            <a href="transfer.html" class="nav-item">
+                <span class="icon">💸</span>
+                <span>التحويلات المالية</span>
+            </a>
+            <a href="cards.html" class="nav-item">
+                <span class="icon">💳</span>
+                <span>البطاقات المصرفية</span>
+            </a>
+            <a href="transactions.html" class="nav-item">
+                <span class="icon">📑</span>
+                <span>كشف الحساب</span>
+            </a>
+            <a href="security.html" class="nav-item">
+                <span class="icon">⚙️</span>
+                <span>إعدادات الأمان</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <button id="logout-btn" class="logout-btn">
+                <span class="icon">🚪</span>
+                <span>تسجيل الخروج</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- المحتوى الرئيسي (Main Content) -->
+    <main class="main-wrapper">
+        <!-- الشريط العلوي -->
+        <header class="top-nav">
+            <div class="welcome-msg">
+                <h3>مرحباً، <span id="user-display-name">العميل</span> 👋</h3>
+                <p>آخر تسجيل دخول: اليوم، 10:45 ص (جلسة آمنة مشفرة)</p>
+            </div>
+            
+            <div class="top-actions">
+                <!-- قائمة الإشعارات -->
+                <div class="dropdown-wrapper">
+                    <button type="button" id="notif-btn" class="icon-btn" aria-label="الإشعارات">
+                        🔔
+                        <span class="unread-dot"></span>
+                    </button>
+                    <div id="notif-menu" class="dropdown-menu notif-dropdown hidden">
+                        <div class="dropdown-header">
+                            <strong>الإشعارات المصرفية</strong>
+                            <button type="button" id="mark-read-btn" class="text-btn">تحديد الكل كمقروء</button>
+                        </div>
+                        <ul class="notif-list">
+                            <li class="notif-item unread">
+                                <span class="notif-icon">💸</span>
+                                <div class="notif-content">
+                                    <p>تم تحويل مبلغ <strong>1,450 ج.م</strong> بنجاح</p>
+                                    <small>منذ 15 دقيقة</small>
+                                </div>
+                            </li>
+                            <li class="notif-item unread">
+                                <span class="notif-icon">🛡️</span>
+                                <div class="notif-content">
+                                    <p>تسجيل دخول جديد لحسابك من متصفح Chrome</p>
+                                    <small>اليوم، 10:45 ص</small>
+                                </div>
+                            </li>
+                            <li class="notif-item">
+                                <span class="notif-icon">💳</span>
+                                <div class="notif-content">
+                                    <p>تم تحديث الحد الائتماني لبطاقتك بنجاح</p>
+                                    <small>أمس</small>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- صورة البروفايل وقائمة المستخدم التفاعلية -->
+                <div class="dropdown-wrapper">
+                    <button type="button" id="profile-btn" class="avatar-btn" aria-label="الملف الشخصي">
+                        <!-- يمكنك استبدال الرابط بمسارك المحلي: assets/images/user-avatar.jpg -->
+                        <img src="assets/images/dash-1.jpg" alt="Avatar" class="user-avatar-img">
+                    </button>
+                    <div id="profile-menu" class="dropdown-menu profile-dropdown hidden">
+                        <div class="user-card-preview">
+                            <strong id="menu-user-name">محمود الباشا</strong>
+                            <small>mahmoud@bank.com</small>
+                            <span class="account-tag">حساب بلاتيني نشط</span>
+                        </div>
+                        <hr class="menu-divider">
+                        <a href="security.html" class="menu-link">
+                            <span>⚙️</span> إعدادات الأمان
+                        </a>
+                        <button type="button" class="menu-link text-danger" id="quick-logout-btn">
+                            <span>🚪</span> تسجيل الخروج
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- كروت الأرصدة والبطاقات -->
+        <section class="cards-grid">
+            <!-- كارت الرصيد الكلي -->
+            <div class="stat-card">
+                <span class="stat-title">إجمالي الرصيد المتاح</span>
+                <h2 class="stat-value">142,500.00 <span class="currency">ج.م</span></h2>
+                <div class="stat-footer text-success">
+                    <span>↑ +4.2% مقارنة بالشهر السابق</span>
+                </div>
+            </div>
+
+            <!-- كارت الحساب الجاري -->
+            <div class="stat-card">
+                <span class="stat-title">الحساب الجاري الرئيسي</span>
+                <h2 class="stat-value">85,200.00 <span class="currency">ج.م</span></h2>
+                <p class="account-num">رقم الحساب: EG94 0002 **** **** 8821</p>
+            </div>
+
+            <!-- كارت الفيزا الافتراضي المصور الفاخر -->
+            <div class="virtual-card">
+                <div class="vcard-overlay"></div>
+                <div class="vcard-top">
+                    <span class="vcard-bank">SecureBank</span>
+                    <strong class="vcard-brand">VISA</strong>
+                </div>
+                <div class="vcard-chip-box"></div>
+                <div class="card-balance">
+                    <span>الرصيد الائتماني المتاح</span>
+                    <h3>57,300.00 ج.م</h3>
+                </div>
+                <div class="card-details">
+                    <span class="card-number">•••• •••• •••• 4490</span>
+                    <span class="card-expiry">12/28</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- بانر استثماري مصور ومميز (Investment Promo Banner) -->
+        <section class="dashboard-promo-banner">
+            <div class="promo-info">
+                <span class="promo-badge">فرصة استثمارية حصرية</span>
+                <h3>شهادة الادخار الثلاثية البلاتينية بعائد سنوي 23.5%</h3>
+                <p>اصرف عائدك شهرياً مع إمكانية الاقتراض بضمان الشهادة حتى 90% من قيمتها وبدون رسوم إصدار.</p>
+                <a href="services.html" class="btn-promo-action">ربط شهادة جديدة الآن ←</a>
+            </div>
+            <div class="promo-img-container">
+                <!-- يمكنك استبدال الرابط بمسارك المحلي: assets/images/finance-growth.png -->
+                <img src="assets/images/ser-num-2.avif" alt="استثمار مصرفي" class="promo-banner-img">
+            </div>
+        </section>
+
+        <!-- جدول العمليات الأخيرة -->
+        <section class="recent-transactions">
+            <div class="section-header">
+                <h3>آخر المعاملات المصرفية</h3>
+                <a href="transactions.html" class="view-all-link">عرض كل المعاملات ←</a>
+            </div>
+
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>تفاصيل المعاملة</th>
+                            <th>المرجع / النوع</th>
+                            <th>التاريخ</th>
+                            <th>المبلغ</th>
+                            <th>الحالة</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="tx-info">
+                                    <span class="tx-icon tx-in">↓</span>
+                                    <div>
+                                        <strong>تحويل وارد - راتب شهري</strong>
+                                        <small>شركة التكنولوجيا المتقدمة</small>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>تحويل بنكي داخلي</td>
+                            <td>08 سبتمبر 2026</td>
+                            <td class="amount text-success">+ 25,000.00 ج.م</td>
+                            <td><span class="badge success">مكتمل</span></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="tx-info">
+                                    <span class="tx-icon tx-out">↑</span>
+                                    <div>
+                                        <strong>مشتريات إلكترونية</strong>
+                                        <small>Amazon Web Services</small>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>بطاقة ائتمانية</td>
+                            <td>06 سبتمبر 2026</td>
+                            <td class="amount text-danger">- 1,450.00 ج.م</td>
+                            <td><span class="badge success">مكتمل</span></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="tx-info">
+                                    <span class="tx-icon tx-out">↑</span>
+                                    <div>
+                                        <strong>فاتورة كهرباء ومياه</strong>
+                                        <small>الخدمات الحكومية الإلكترونية</small>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>سداد فواتير</td>
+                            <td>03 سبتمبر 2026</td>
+                            <td class="amount text-danger">- 820.00 ج.م</td>
+                            <td><span class="badge success">مكتمل</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <script src="assets/js/dashboard.js"></script>
+</body>
+</html>

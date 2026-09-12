@@ -1,0 +1,433 @@
+/* شارة المستوى في الهيدر */
+.security-level-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #ecfdf5;
+    border: 1px solid #a7f3d0;
+    color: #065f46;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12.5px;
+    font-weight: 700;
+}
+
+.shield-green-dot {
+    width: 8px;
+    height: 8px;
+    background: #10b981;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #10b981;
+}
+
+/* بطاقة الصحة الأمنية الشاملة */
+.security-health-card {
+    background: linear-gradient(135deg, #0d2838 0%, #071722 100%);
+    border-radius: 16px;
+    padding: 30px 32px;
+    color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 35px;
+    box-shadow: var(--shadow-md);
+    position: relative;
+    overflow: hidden;
+}
+
+.health-badge {
+    display: inline-block;
+    background: rgba(56, 189, 248, 0.2);
+    border: 1px solid rgba(56, 189, 248, 0.4);
+    color: #38bdf8;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 11.5px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.health-content h2 {
+    font-size: 22px;
+    margin-bottom: 6px;
+    font-weight: 800;
+}
+
+.health-content p {
+    font-size: 13.5px;
+    color: #94a3b8;
+    max-width: 600px;
+    line-height: 1.6;
+    margin-bottom: 18px;
+}
+
+.health-progress-wrap {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.health-progress-bar {
+    width: 280px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #38bdf8, #10b981);
+    border-radius: 6px;
+    transition: width 0.6s ease;
+}
+
+.health-score-val {
+    font-size: 13.5px;
+    font-weight: 800;
+    color: #10b981;
+    font-family: monospace;
+}
+
+.health-icon-box {
+    font-size: 64px;
+    opacity: 0.85;
+}
+
+@media (max-width: 768px) {
+    .security-health-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+    .health-icon-box {
+        display: none;
+    }
+}
+
+/* شبكة الأمان */
+.security-grid-layout {
+    display: grid;
+    grid-template-columns: 1.25fr 0.95fr;
+    gap: 30px;
+    align-items: start;
+}
+
+@media (max-width: 1000px) {
+    .security-grid-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+.security-col-main, .security-col-side {
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+}
+
+/* صندوق الأمان العام */
+.sec-box {
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    padding: 26px 28px;
+    box-shadow: var(--shadow-sm);
+}
+
+.sec-box-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 1px solid #f1f5f9;
+    padding-bottom: 16px;
+    margin-bottom: 22px;
+}
+
+.sec-box-header h4 {
+    font-size: 16.5px;
+    color: var(--primary-color);
+    margin-bottom: 4px;
+}
+
+.sec-box-header small {
+    color: var(--text-secondary);
+    font-size: 12.5px;
+}
+
+.sec-icon {
+    font-size: 24px;
+}
+
+/* حقول النموذج ومقياس كلمة المرور */
+.sec-form .form-group {
+    margin-bottom: 18px;
+}
+
+.sec-form label {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 6px;
+}
+
+.sec-form input {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1.5px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 13.5px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.sec-form input:focus {
+    border-color: var(--accent-color);
+}
+
+.pwd-meter-box {
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.meter-bar {
+    flex: 1;
+    height: 6px;
+    background: #e2e8f0;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.meter-fill {
+    height: 100%;
+    width: 0%;
+    transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.meter-text {
+    font-size: 11.5px;
+    font-weight: 700;
+    color: var(--text-secondary);
+}
+
+.sec-alert {
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 12.5px;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+.sec-alert.success {
+    background: #ecfdf5;
+    border: 1px solid #a7f3d0;
+    color: #065f46;
+}
+
+.sec-alert.danger {
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    color: #991b1b;
+}
+
+.btn-sec-submit {
+    padding: 12px 24px;
+    background: var(--primary-color);
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 13.5px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-sec-submit:hover {
+    background: var(--accent-color);
+}
+
+/* مفاتيح التبديل (Toggles) */
+.toggle-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.toggle-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #f8fafc;
+}
+
+.toggle-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.toggle-info strong {
+    display: block;
+    font-size: 14px;
+    color: var(--primary-color);
+    margin-bottom: 4px;
+}
+
+.toggle-info p {
+    font-size: 12.5px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* زر الـ Switch Toggle */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 46px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    inset: 0;
+    background-color: #cbd5e1;
+    transition: .3s;
+    border-radius: 24px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .3s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: var(--accent-color);
+}
+
+input:checked + .slider:before {
+    transform: translateX(22px);
+}
+
+/* قائمة الجلسات النشطة */
+.btn-kill-all {
+    background: none;
+    border: none;
+    color: var(--danger-color);
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.btn-kill-all:hover {
+    text-decoration: underline;
+}
+
+.sessions-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 22px;
+}
+
+.session-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px;
+    background: #f8fafc;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+}
+
+.session-item.current {
+    border-color: #bae6fd;
+    background: #f0f9ff;
+}
+
+.device-icon {
+    width: 40px;
+    height: 40px;
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
+.device-meta {
+    flex: 1;
+}
+
+.device-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+.device-title strong {
+    font-size: 13.5px;
+    color: var(--primary-color);
+}
+
+.curr-badge {
+    background: #dcfce7;
+    color: #166534;
+    font-size: 10.5px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 6px;
+}
+
+.btn-kill-single {
+    background: none;
+    border: none;
+    color: #ef4444;
+    font-size: 11.5px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.btn-kill-single:hover {
+    text-decoration: underline;
+}
+
+.device-meta small {
+    display: block;
+    font-size: 11.5px;
+    color: var(--text-secondary);
+}
+
+.security-tip-card {
+    background: #fffbeb;
+    border: 1px solid #fef3c7;
+    border-radius: 8px;
+    padding: 12px 14px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    font-size: 12px;
+    color: #92400e;
+}

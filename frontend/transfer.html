@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>التحويلات المالية - SecureBank</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/dashboard.css">
+    <link rel="stylesheet" href="assets/css/transfer.css">
+    <script src="assets/js/auth.js"></script>
+</head>
+<body>
+
+    <!-- الشريط الجانبي الموحد -->
+    <aside class="sidebar">
+        <div class="sidebar-brand">
+            <span class="bank-icon">🏦</span>
+            <h2>SecureBank</h2>
+        </div>
+
+        <nav class="nav-menu">
+            <a href="dashboard.html" class="nav-item">
+                <span class="icon">📊</span>
+                <span>لوحة التحكم</span>
+            </a>
+            <a href="transfer.html" class="nav-item active">
+                <span class="icon">💸</span>
+                <span>التحويلات المالية</span>
+            </a>
+            <a href="cards.html" class="nav-item">
+                <span class="icon">💳</span>
+                <span>البطاقات المصرفية</span>
+            </a>
+            <a href="transactions.html" class="nav-item">
+                <span class="icon">📑</span>
+                <span>كشف الحساب</span>
+            </a>
+            <a href="security.html" class="nav-item">
+                <span class="icon">⚙️</span>
+                <span>إعدادات الأمان</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <button id="logout-btn" class="logout-btn">
+                <span class="icon">🚪</span>
+                <span>تسجيل الخروج</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- المحتوى الرئيسي -->
+    <main class="main-wrapper">
+        <!-- الشريط العلوي -->
+        <header class="top-nav">
+            <div class="welcome-msg">
+                <h3>إجراء تحويل مالي جديد 💸</h3>
+                <p>تحويل فوري ومشفر عبر شبكة المدفوعات اللحظية IPN والأنظمة المصرفية المعتمدة</p>
+            </div>
+            
+            <div class="top-actions">
+                <div class="secure-badge-pill">
+                    <span class="shield-dot"></span>
+                    <span>جلسة دفع مشفرة 256-Bit</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- شبكة التحويل الرئيسية -->
+        <div class="transfer-grid-layout">
+            
+            <!-- نموذج إدخال بيانات التحويل -->
+            <section class="transfer-form-card">
+                <!-- تبويبات نوع التحويل -->
+                <div class="transfer-channels">
+                    <button type="button" class="channel-btn active" data-channel="internal">
+                        <span>🏦</span> تحويل داخل SecureBank
+                    </button>
+                    <button type="button" class="channel-btn" data-channel="ipn">
+                        <span>⚡</span> شبكة IPN (رقم هاتف / IPA)
+                    </button>
+                    <button type="button" class="channel-btn" data-channel="iban">
+                        <span>🏛️</span> بنك محلي آخر (IBAN)
+                    </button>
+                </div>
+
+                <form id="transfer-form" class="t-form" novalidate>
+                    <!-- اختيار الحساب المصدر -->
+                    <div class="t-field-group">
+                        <label for="source-account">تحويل من حساب</label>
+                        <select id="source-account" required>
+                            <option value="current" data-balance="85200">الحساب الجاري الرئيسي (85,200.00 ج.م) - EG94 0002 **** 8821</option>
+                            <option value="savings" data-balance="57300">حساب التوفير البلاتيني (57,300.00 ج.م) - EG94 0002 **** 1045</option>
+                        </select>
+                        <small class="field-hint">الرصيد المتاح للتحويل: <strong id="available-bal-display">85,200.00 ج.م</strong></small>
+                    </div>
+
+                    <!-- بيانات المستلم (ديناميكية حسب القناة) -->
+                    <div class="t-field-group" id="recipient-field-wrap">
+                        <label for="recipient-input" id="recipient-label">رقم حساب المستلم (داخل SecureBank)</label>
+                        <div class="input-icon-box">
+                            <span class="f-icon">👤</span>
+                            <input type="text" id="recipient-input" placeholder="أدخل رقم الحساب المكون من 12 إلى 16 رقماً" required>
+                        </div>
+                    </div>
+
+                    <!-- المبلغ والغرض -->
+                    <div class="t-form-row">
+                        <div class="t-field-group">
+                            <label for="transfer-amount">المبلغ المراد تحويله</label>
+                            <div class="input-icon-box">
+                                <span class="f-icon">💵</span>
+                                <input type="number" id="transfer-amount" placeholder="0.00" min="10" step="10" required>
+                                <span class="input-currency">ج.م</span>
+                            </div>
+                        </div>
+
+                        <div class="t-field-group">
+                            <label for="transfer-purpose">الغرض من التحويل</label>
+                            <select id="transfer-purpose">
+                                <option value="personal">مصروفات شخصية / عائلية</option>
+                                <option value="bills">سداد فواتير أو التزامات</option>
+                                <option value="business">معاملات تجارية / خدمات</option>
+                                <option value="other">أخرى</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- تنبيه بالرصيد غير الكافي -->
+                    <div id="transfer-error" class="alert-box-danger hidden">
+                        <span>المبلغ المطلوب أكبر من الرصيد المتاح في الحساب المختار.</span>
+                    </div>
+
+                    <!-- زر المتابعة للتأكيد -->
+                    <button type="submit" class="btn-proceed-transfer" id="btn-submit-transfer">
+                        <span>مراجعة وتأكيد التحويل ←</span>
+                    </button>
+                </form>
+            </section>
+
+            <!-- اللوحة الجانبية: ملخص العملية ومؤشرات الأمان -->
+            <aside class="transfer-summary-panel">
+                <!-- بطاقة ملخص الحوالة -->
+                <div class="summary-preview-card">
+                    <h4>ملخص العملية</h4>
+                    <hr class="s-divider">
+                    
+                    <div class="s-row">
+                        <span>طريقة الدفع:</span>
+                        <strong id="summary-channel">تحويل داخلي فوري</strong>
+                    </div>
+                    <div class="s-row">
+                        <span>المبلغ الأساسي:</span>
+                        <strong id="summary-amount">0.00 ج.م</strong>
+                    </div>
+                    <div class="s-row">
+                        <span>رسوم التحويل:</span>
+                        <strong class="text-success">مجاناً (0.00 ج.م)</strong>
+                    </div>
+                    
+                    <hr class="s-divider">
+                    
+                    <div class="s-row total">
+                        <span>الإجمالي المخصوم:</span>
+                        <strong id="summary-total" class="text-primary">0.00 ج.م</strong>
+                    </div>
+
+                    <div class="security-features-box">
+                        <p>✓ معالجة لحظية وتأكيد فوري عبر رسائل SMS.</p>
+                        <p>✓ حدود السحب اليومي المتاحة: 120,000 ج.م.</p>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- نافذة تأكيد التحويل برمز OTP (Security Modal) -->
+    <div id="otp-modal" class="modal-overlay hidden">
+        <div class="modal-card">
+            <div class="modal-header">
+                <div>
+                    <h3>تأكيد التحويل المصرفي</h3>
+                    <small>أدخل رمز التحقق المرسل لهاتفك لإنهاء المعاملة</small>
+                </div>
+                <button type="button" id="close-otp-modal" class="close-btn">&times;</button>
+            </div>
+            
+            <div class="otp-summary-box">
+                <p>أنت على وشك تحويل مبلغ: <strong id="modal-confirm-amount" class="text-accent">0.00 ج.م</strong></p>
+                <p>إلى: <strong id="modal-confirm-recipient">-</strong></p>
+            </div>
+
+            <form id="otp-confirm-form">
+                <div class="otp-input-group">
+                    <label for="otp-code">رمز الأمان (OTP) المؤقت</label>
+                    <input type="text" id="otp-code" maxlength="6" placeholder="• • • • • •" required class="otp-input">
+                    <small class="otp-timer">ينتهي الرمز خلال <strong id="timer-counter">02:00</strong> دقيقة</small>
+                </div>
+
+                <button type="submit" class="btn-confirm-final" id="btn-final-transfer">
+                    <span class="btn-txt">تأكيد وخصم المبلغ الآن</span>
+                    <div class="spinner hidden" id="transfer-spinner"></div>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- نافذة نجاح التحويل وإيصال الدفع -->
+    <div id="success-modal" class="modal-overlay hidden">
+        <div class="modal-card success-card">
+            <div class="success-icon-wrap">✓</div>
+            <h3>تم التحويل بنجاح!</h3>
+            <p>تم خصم المبلغ وإيداعه في حساب المستلم فورياً.</p>
+
+            <div class="receipt-box">
+                <div class="r-row"><span>رقم المعاملة المرجعي:</span> <strong id="receipt-ref">TXN-8924018</strong></div>
+                <div class="r-row"><span>المبلغ المحول:</span> <strong id="receipt-amount">0.00 ج.م</strong></div>
+                <div class="r-row"><span>الحساب المستلم:</span> <strong id="receipt-to">-</strong></div>
+                <div class="r-row"><span>تاريخ المعاملة:</span> <strong id="receipt-date">الآن</strong></div>
+            </div>
+
+            <button type="button" class="btn-close-receipt" id="btn-close-receipt">العودة للوحة التحكم</button>
+        </div>
+    </div>
+
+    <script src="assets/js/dashboard.js"></script>
+    <script src="assets/js/transfer.js"></script>
+</body>
+</html>

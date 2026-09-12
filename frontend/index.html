@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecureBank - الصيرفة الرقمية الذكية والآمنة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/global.css">
+    <link rel="stylesheet" href="assets/css/home.css">
+</head>
+<body>
+
+    <!-- الهيدر الموحد -->
+    <header class="site-header">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <span class="bank-icon">🏦</span>
+                <span class="bank-name">SecureBank</span>
+            </a>
+
+            <nav class="main-nav">
+                <a href="index.html" class="active">الرئيسية</a>
+                <a href="services.html">الخدمات المصرفية</a>
+                <a href="calculator.html">حاسبة التمويل</a>
+                <a href="public-cards.html">البطاقات</a>
+                <a href="about.html">عن البنك</a>
+            </nav>
+
+            <div class="header-actions">
+                <a href="login.html" class="btn-login-outline">تسجيل الدخول</a>
+                <a href="register.html" class="btn-register-solid">افتح حسابك الآن</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- شريط المؤشرات الحية والفائدة اللحظية -->
+    <div class="ticker-bar">
+        <div class="ticker-content" id="rates-ticker">
+            <div class="ticker-item"><span class="badge-fire">عائد قياسي</span> شهادة الادخار الثلاثية: <strong>23.5% سنوياً</strong></div>
+            <div class="ticker-item">💵 الدولار الأمريكي (USD): <strong id="usd-rate">48.30 شراء / 48.45 بيع</strong></div>
+            <div class="ticker-item">💶 اليورو (EUR): <strong id="eur-rate">52.10 شراء / 52.30 بيع</strong></div>
+            <div class="ticker-item">⚡ تحويلات لحظية بلا حدود عبر شبكة المدفوعات IPN</div>
+        </div>
+    </div>
+
+    <!-- السلايدر الترويجي التفاعلي Hero Carousel -->
+    <section class="hero-slider-section">
+        <div class="slider-wrapper" id="hero-slider">
+            
+            <!-- الشريحة الأولى: الدفع اللاتلامسي والبطاقات -->
+            <div class="slide active">
+                <!-- ضع رابط صورتك الأولى مكان الرابط التالي -->
+                <div class="slide-bg" style="background-image: url('assets/images/R.jfif');"></div>
+                <div class="slide-overlay"></div>
+                
+                <div class="container slide-content-box">
+                    <span class="slide-badge">الجيل القادم من الدفع</span>
+                    <h1 class="slide-title">حياتك أسرع مع بطاقات الدفع الذكية</h1>
+                    <p class="slide-description">
+                        سدد مشترياتك اليومية بلمسة واحدة دون ملامسة الأجهزة، مع نظام حماية فوري يضمن لك تجربة تسوق آمنة محلياً ودولياً.
+                    </p>
+                    <div class="slide-actions">
+                        <a href="public-cards.html" class="btn-slide-primary">استكشف باقة البطاقات ←</a>
+                        <a href="register.html" class="btn-slide-glass">طلب إصدار فوري</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- الشريحة الثانية: التمويل والقروض الميسرة -->
+            <div class="slide">
+                <!-- ضع رابط صورتك الثانية مكان الرابط التالي -->
+                <div class="slide-bg" style="background-image: url('assets/images/il_794xN.5951101311_d3r8.avif');"></div>
+                <div class="slide-overlay"></div>
+                
+                <div class="container slide-content-box">
+                    <span class="slide-badge">برامج التمويل الشخصي والسيارات</span>
+                    <h1 class="slide-title">امتلك سيارتك اليوم بأطول فترة سداد</h1>
+                    <p class="slide-description">
+                        برامج تمويلية مصممة خصيصاً لتناسب دخلك الشهري بنسب فائدة تنافسية وبدون إجراءات بنكية معقدة مع موافقة سريعة.
+                    </p>
+                    <div class="slide-actions">
+                        <a href="calculator.html" class="btn-slide-primary">احسب قسطك الشهري الآن ←</a>
+                        <a href="services.html" class="btn-slide-glass">شروط ومزايا التمويل</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- الشريحة الثالثة: إدارة الحسابات والتحويل الفوري -->
+            <div class="slide">
+                <!-- ضع رابط صورتك الثالثة مكان الرابط التالي -->
+                <div class="slide-bg" style="background-image: url('assets/images/photo-1563986768609-322da13575f3.avif');"></div>
+                <div class="slide-overlay"></div>
+                
+                <div class="container slide-content-box">
+                    <span class="slide-badge">الخدمات المصرفية الرقمية 24/7</span>
+                    <h1 class="slide-title">بنكك بين يديك أينما كنت وفي أي وقت</h1>
+                    <p class="slide-description">
+                        أدر أموالك، وحوّل لأي حساب أو محفظة إلكترونية في ثوانٍ معدودة عبر بنية تحتية سحابية موثوقة ومحمية بالكامل.
+                    </p>
+                    <div class="slide-actions">
+                        <a href="login.html" class="btn-slide-primary">تسجيل الدخول للحساب ←</a>
+                        <a href="register.html" class="btn-slide-glass">افتح حساب جديد</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- أزرار تقليب السلايدر -->
+        <button type="button" class="slider-nav-btn prev" id="slider-prev" aria-label="السابق">‹</button>
+        <button type="button" class="slider-nav-btn next" id="slider-next" aria-label="التالي">›</button>
+
+        <!-- مؤشرات السلايدر السفلية (Dots) -->
+        <div class="slider-pagination" id="slider-dots">
+            <span class="p-dot active" data-index="0"></span>
+            <span class="p-dot" data-index="1"></span>
+            <span class="p-dot" data-index="2"></span>
+        </div>
+    </section>
+
+    <!-- شريط مميزات الأمان والسرعة البصري -->
+    <section class="trust-ribbon">
+        <div class="container trust-container">
+            <div class="trust-item">
+                <div class="trust-icon-box">🔒</div>
+                <div>
+                    <strong>حماية وتشفير 256-Bit</strong>
+                    <small>أمان مصرفي معتمد ومطابق لأعلى المعايير</small>
+                </div>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon-box">⚡</div>
+                <div>
+                    <strong>تحويلات فورية لحظية</strong>
+                    <small>مدعوم بالكامل بشبكة التحويل القومي IPN</small>
+                </div>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon-box">🛡️</div>
+                <div>
+                    <strong>إشراف ورقابة مستمرة</strong>
+                    <small>خاضع لإشراف وتعليمات البنك المركزي المصري</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم الخدمات التفاعلي العصري بنظام Glass Card -->
+    <section class="quick-overview-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">حلولنا المصممة لك</span>
+                <h2>كل ما تحتاجه لإدارة أموالك في مكان واحد</h2>
+                <p>باقة متكاملة من الخدمات الرقمية التي تختصر وقتك وتمنحك تحكماً مطلقاً في مدخراتك ومصروفاتك.</p>
+            </div>
+
+            <div class="overview-grid">
+                <!-- كارت 1 -->
+                <div class="glass-card">
+                    <div class="card-icon-wrapper">💼</div>
+                    <h3>الخدمات المصرفية والأوعية الادخارية</h3>
+                    <p>خيارات متنوعة لحسابات التوفير والشهادات البنكية التي تمنحك عوائد دورية مجزية تُصرف شهرياً لحسابك.</p>
+                    <a href="services.html" class="card-action-link">
+                        <span>اكتشف كافة الخدمات</span>
+                        <span class="arrow-icon">←</span>
+                    </a>
+                </div>
+
+                <!-- كارت 2 -->
+                <div class="glass-card highlight">
+                    <div class="card-icon-wrapper">🧮</div>
+                    <h3>حاسبة القروض والتمويل الذكية</h3>
+                    <p>خطط لمستقبلك المالي، واحسب قسطك التقديري بدقة وبشفافية كاملة بدون أي مصروفات إدارية مستترة.</p>
+                    <a href="calculator.html" class="card-action-link">
+                        <span>احسب تمويلك الآن</span>
+                        <span class="arrow-icon">←</span>
+                    </a>
+                </div>
+
+                <!-- كارت 3 -->
+                <div class="glass-card">
+                    <div class="card-icon-wrapper">💳</div>
+                    <h3>عالم البطاقات الائتمانية والخصم</h3>
+                    <p>تمتع بفترات سماح بدون فوائد، وخدمات الدفع اللاتلامسي والسحب المجاني مع حماية متقدمة عند الشراء عبر الإنترنت.</p>
+                    <a href="public-cards.html" class="card-action-link">
+                        <span>قارن بين البطاقات</span>
+                        <span class="arrow-icon">←</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- الفوتر الموحد -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <div class="logo white">
+                    <span class="bank-icon">🏦</span>
+                    <span class="bank-name">SecureBank</span>
+                </div>
+                <p>البنك الرقمي الرائد في تقديم الحلول المصرفية السحابية الآمنة وفق أحدث تقنيات التشفير المالي وتحت الإشراف الكامل للبنك المركزي المصري.</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>روابط سريعة ومفيدة</h4>
+                <ul>
+                    <li><a href="services.html">الخدمات المصرفية</a></li>
+                    <li><a href="calculator.html">حاسبة التمويل</a></li>
+                    <li><a href="public-cards.html">البطاقات</a></li>
+                    <li><a href="about.html">عن البنك ورؤيتنا</a></li>
+                    <li><a href="login.html">الخدمات الإلكترونية للأفراد</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>المساعدة والدعم على مدار الساعة</h4>
+                <p>الخط الساخن: <strong>19888</strong> (متاح 24/7)</p>
+                <p>البريد الإلكتروني: <strong>support@securebank.com</strong></p>
+                <p>المقر الإداري: القطاع المالي، القاهرة الجديدة، مصر</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 SecureBank. جميع الحقوق محفوظة ومسجلة رسمياً.</p>
+            <p>الصيرفة السحابية المؤمنة بتشفير End-to-End.</p>
+        </div>
+    </footer>
+
+    <script src="assets/js/main-nav.js"></script>
+    <script src="assets/js/home.js"></script>
+</body>
+</html>
