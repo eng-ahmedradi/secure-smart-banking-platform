@@ -1,4 +1,4 @@
-# Bank-System
+# Banking-System
 A simple Spring Boot backend built to sit behind the securebank-app frontend. It covers registration/login (JWT), accounts, transactions, money transfers (with an OTP confirmation step, like the frontend's OTP modal), and cards.
 
 > **Heads up about the frontend:** every page in `securebank-app` currently runs on hardcoded
@@ -12,32 +12,47 @@ this file for `login.js` to get you started).
 
 - Java 17, Spring Boot 3.3
 - Spring Web, Spring Security (JWT, stateless), Spring Data JPA
-- H2 in-memory database (zero setup — resets on every restart)
+- PostgreSQL (persistent database)
 
 ## Running it
 
-Requires JDK 17+ and Maven (no wrapper is bundled here, so use your own `mvn`, or import the
-folder as a Maven project into IntelliJ/Eclipse/VS Code and run `SecurebankApiApplication`):
+Requires JDK 17+, Maven, and a running PostgreSQL instance.
 
-```bash
-cd securebank-backend
-mvn spring-boot:run
-```
+1. Create the database (once):
+    
+    ```bash
+    createdb securebank
+    # or via psql:
+    # CREATE DATABASE securebank;
+    ```
+    
+2. Configure connection (defaults work for local Postgres with user/password `postgres`):
+    - `SPRING_DATASOURCE_URL` — default `jdbc:postgresql://localhost:5432/securebank`
+    - `SPRING_DATASOURCE_USERNAME` — default `postgres`
+    - `SPRING_DATASOURCE_PASSWORD` — default `postgres`
+    
+    Or edit `src/main/resources/application.properties` directly.
+    
+3. Start the API:
+    
+    ```bash
+    cd securebank-backend
+    mvn spring-boot:run
+    ```
+    
+    (No wrapper is bundled, so use your own `mvn`, or import the folder as a Maven project into
+    IntelliJ/Eclipse/VS Code and run `SecurebankApiApplication`.)
+    
 
-The API starts on `http://localhost:8080`. A demo user is seeded automatically:
+The API starts on `http://localhost:8080`. A demo user is seeded automatically on first run
+(if the DB is empty):
 
 - **username:** `admin`
 - **password:** `123456`
 
 (This matches the hardcoded demo credentials in the original `login.js` mock.)
 
-The H2 console is available at `http://localhost:8080/h2-console`
-(JDBC URL: `jdbc:h2:mem:securebank`, user `sa`, blank password) if you want to poke at the data directly.
-
-### Switching to a real database
-
-Swap the 4 `spring.datasource.*` lines in `application.properties` for MySQL/Postgres and add the
-matching driver dependency to `pom.xml` — everything else (entities, repositories) stays the same.
+Tables are created/updated automatically via Hibernate (`ddl-auto=update`).
 
 ### CORS
 

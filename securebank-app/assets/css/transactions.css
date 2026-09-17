@@ -1,0 +1,456 @@
+/* زر تصدير الـ PDF بالهيدر */
+.btn-export-pdf {
+    padding: 10px 18px;
+    background: #ffffff;
+    border: 1.5px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--primary-color);
+    font-size: 13.5px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.2s ease;
+}
+
+.btn-export-pdf:hover {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+    background: #f8fafc;
+}
+
+/* شبكة مؤشرات التدفق المالي (Cashflow KPIs) */
+.cashflow-kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 30px;
+}
+
+@media (max-width: 900px) {
+    .cashflow-kpi-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.kpi-box {
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    padding: 22px 24px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.2s;
+}
+
+.kpi-box:hover {
+    transform: translateY(-3px);
+}
+
+.kpi-icon-wrap {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    font-weight: 900;
+    flex-shrink: 0;
+}
+
+.kpi-box.in-flow .kpi-icon-wrap {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.kpi-box.out-flow .kpi-icon-wrap {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.kpi-box.net-flow .kpi-icon-wrap {
+    background: #e0f2fe;
+    color: #0369a1;
+}
+
+.kpi-title {
+    display: block;
+    font-size: 12.5px;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+    font-weight: 600;
+}
+
+.kpi-amount {
+    display: block;
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 2px;
+}
+
+.kpi-box.in-flow .kpi-amount { color: #16a34a; }
+.kpi-box.out-flow .kpi-amount { color: #dc2626; }
+
+.kpi-box small {
+    font-size: 11.5px;
+    color: var(--text-secondary);
+}
+
+/* لوحة الفلترة والبحث المتقدم */
+.filter-controls-panel {
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    padding: 20px 24px;
+    margin-bottom: 30px;
+    box-shadow: var(--shadow-sm);
+}
+
+.search-input-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.search-icon {
+    position: absolute;
+    right: 14px;
+    font-size: 16px;
+    color: var(--text-secondary);
+    pointer-events: none;
+}
+
+.search-input-box input {
+    width: 100%;
+    padding: 12px 42px 12px 16px;
+    border: 1.5px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 13.5px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.search-input-box input:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.08);
+}
+
+.filter-pills-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.pills-group {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.pill-filter {
+    padding: 8px 16px;
+    background: #f8fafc;
+    border: 1.5px solid var(--border-color);
+    border-radius: 20px;
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.pill-filter:hover {
+    border-color: var(--accent-color);
+    color: var(--primary-color);
+}
+
+.pill-filter.active {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    color: #ffffff;
+}
+
+.date-select-wrap select {
+    padding: 8px 14px;
+    border: 1.5px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--text-primary);
+    outline: none;
+    cursor: pointer;
+}
+
+/* بطاقة الجدول المتطورة */
+.transactions-table-card {
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    padding: 24px;
+    box-shadow: var(--shadow-sm);
+}
+
+.table-header-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.table-header-meta h4 {
+    font-size: 16px;
+    color: var(--primary-color);
+    font-weight: 800;
+}
+
+.auto-sync-tag {
+    font-size: 11.5px;
+    color: var(--accent-color);
+    background: #e0f2fe;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-weight: 700;
+}
+
+.table-responsive {
+    overflow-x: auto;
+}
+
+.tx-data-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: right;
+    font-size: 13.5px;
+}
+
+.tx-data-table th {
+    padding: 14px;
+    color: var(--text-secondary);
+    border-bottom: 1.5px solid var(--border-color);
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.tx-data-table td {
+    padding: 16px 14px;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.tx-row:hover td {
+    background: #fcfdfe;
+}
+
+.tx-flex-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.tx-circle-badge {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 15px;
+    flex-shrink: 0;
+}
+
+.tx-circle-badge.in { background: #dcfce7; color: #166534; }
+.tx-circle-badge.out { background: #fee2e2; color: #991b1b; }
+
+.tx-flex-meta strong {
+    display: block;
+    font-size: 13.5px;
+    color: var(--primary-color);
+    margin-bottom: 2px;
+}
+
+.tx-flex-meta small {
+    color: var(--text-secondary);
+    font-size: 11.5px;
+}
+
+.amount {
+    font-weight: 800;
+    font-family: monospace;
+    font-size: 14.5px;
+    direction: ltr;
+    text-align: right;
+}
+
+.amount.in { color: #16a34a; }
+.amount.out { color: #dc2626; }
+
+.status-pill {
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 11.5px;
+    font-weight: 700;
+}
+
+.status-pill.success { background: #dcfce7; color: #166534; }
+
+.btn-receipt-view {
+    padding: 6px 12px;
+    background: #f1f5f9;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--primary-color);
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-receipt-view:hover {
+    background: #e2e8f0;
+}
+
+/* إشعار عدم وجود بيانات */
+.no-data-notice {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-secondary);
+}
+
+.no-data-icon {
+    font-size: 38px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* نافذة إيصال المعاملة (Digital Receipt Modal) */
+.receipt-modal-box {
+    max-width: 480px;
+    padding: 26px;
+}
+
+.receipt-paper {
+    background: #f8fafc;
+    border: 1.5px dashed var(--border-color);
+    border-radius: 12px;
+    padding: 24px 20px;
+    margin-bottom: 20px;
+}
+
+.receipt-brand-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 12px;
+    margin-bottom: 18px;
+}
+
+.r-bank-name {
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--primary-color);
+}
+
+.r-stamp {
+    background: #dcfce7;
+    color: #166534;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+.receipt-main-amount {
+    text-align: center;
+    margin-bottom: 22px;
+}
+
+.r-amt-label {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.receipt-main-amount h2 {
+    font-size: 30px;
+    color: var(--primary-color);
+    font-weight: 800;
+    margin: 4px 0 6px;
+    direction: ltr;
+}
+
+.r-status-badge {
+    display: inline-block;
+    font-size: 11.5px;
+    color: #166534;
+    font-weight: 700;
+}
+
+.receipt-details-list {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+    border-top: 1px solid #e2e8f0;
+    border-bottom: 1px solid #e2e8f0;
+    padding: 16px 0;
+    margin-bottom: 18px;
+}
+
+.rd-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12.5px;
+}
+
+.rd-row span {
+    color: var(--text-secondary);
+}
+
+.rd-row strong {
+    color: var(--primary-color);
+}
+
+.mono-text {
+    font-family: monospace;
+    letter-spacing: 0.5px;
+}
+
+.receipt-barcode-visual {
+    text-align: center;
+    color: var(--text-secondary);
+}
+
+.mock-barcode {
+    font-family: monospace;
+    font-size: 18px;
+    letter-spacing: 4px;
+    margin-bottom: 4px;
+}
+
+.receipt-barcode-visual small {
+    font-size: 10.5px;
+}
+
+.btn-print-receipt {
+    width: 100%;
+    padding: 12px;
+    background: var(--primary-color);
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-print-receipt:hover {
+    background: var(--accent-color);
+}

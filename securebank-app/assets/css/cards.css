@@ -1,0 +1,422 @@
+/* زر الهيدر لطلب بطاقة جديدة */
+.btn-new-card {
+    padding: 10px 18px;
+    background: var(--accent-color);
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 13.5px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.btn-new-card:hover {
+    background: var(--accent-hover);
+    transform: translateY(-1px);
+}
+
+ 
+.cards-management-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 1.35fr;
+    gap: 32px;
+    align-items: start;
+}
+
+@media (max-width: 950px) {
+    .cards-management-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.card-visual-column, .card-controls-column {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+ 
+.card-flip-scene {
+    width: 100%;
+    max-width: 440px;
+    height: 250px;
+    perspective: 1000px;
+    margin: 0 auto;
+}
+
+.flipper-card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+}
+
+.flipper-card.is-flipped {
+    transform: rotateY(180deg);
+}
+
+.card-face {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+}
+
+/* الوجه الأمامي */
+.card-front {
+    background: linear-gradient(135deg, #091319 0%, #172836 50%, #0c1c28 100%);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 24px 26px;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-shine-layer {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.12) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+.cf-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+.cf-bank-title {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #38bdf8;
+    letter-spacing: 0.5px;
+}
+
+.cf-brand {
+    font-size: 19px;
+    font-style: italic;
+    font-weight: 900;
+}
+
+.cf-chip {
+    width: 44px;
+    height: 32px;
+    background: linear-gradient(135deg, #fef08a 0%, #facc15 100%);
+    border-radius: 5px;
+    border: 1px solid rgba(0,0,0,0.2);
+    position: relative;
+    z-index: 2;
+}
+
+.cf-number {
+    font-size: 20px;
+    letter-spacing: 3px;
+    font-family: monospace;
+    direction: ltr;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    position: relative;
+    z-index: 2;
+}
+
+.cf-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    font-size: 12px;
+    position: relative;
+    z-index: 2;
+}
+
+.cf-bottom small {
+    display: block;
+    font-size: 9.5px;
+    color: #94a3b8;
+    margin-bottom: 2px;
+}
+
+.cf-bottom strong {
+    font-size: 13px;
+    letter-spacing: 0.5px;
+}
+
+.cf-exp {
+    direction: ltr;
+    text-align: left;
+}
+
+/* الوجه الخلفي */
+.card-back {
+    background: linear-gradient(135deg, #091319 0%, #172836 100%);
+    transform: rotateY(180deg);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 22px 0 16px;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.mag-stripe {
+    width: 100%;
+    height: 42px;
+    background: #020617;
+}
+
+.cvv-section {
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    direction: ltr;
+}
+
+.sig-strip {
+    flex: 1;
+    height: 34px;
+    background: #e2e8f0;
+    color: #64748b;
+    font-family: monospace;
+    font-size: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 2px;
+}
+
+.cvv-box {
+    width: 50px;
+    height: 34px;
+    background: #ffffff;
+    color: #0f172a;
+    font-family: monospace;
+    font-weight: 800;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+}
+
+.back-notice {
+    padding: 0 24px;
+    font-size: 9.5px;
+    color: #94a3b8;
+    line-height: 1.5;
+}
+
+.back-logo {
+    padding: 0 24px;
+    font-size: 12px;
+    font-weight: 800;
+    color: #cbd5e1;
+    text-align: left;
+    direction: ltr;
+}
+
+/* أزرار الإجراء السريع للبطاقة */
+.card-quick-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+
+.action-pill-btn {
+    padding: 9px 18px;
+    background: #ffffff;
+    border: 1.5px solid var(--border-color);
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--primary-color);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s;
+}
+
+.action-pill-btn:hover {
+    border-color: var(--accent-color);
+    background: #f8fafc;
+}
+
+/* بطاقة الحد الائتماني */
+.credit-limits-card {
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    padding: 22px;
+    box-shadow: var(--shadow-sm);
+}
+
+.credit-limits-card h4 {
+    font-size: 15px;
+    color: var(--primary-color);
+    margin-bottom: 14px;
+}
+
+.limit-status-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13.5px;
+    margin-bottom: 12px;
+}
+
+.limit-status-row strong {
+    color: var(--success-color);
+    font-size: 15px;
+    display: block;
+}
+
+.limit-status-row small {
+    display: block;
+    color: var(--text-secondary);
+    font-size: 13px;
+}
+
+.limit-progress-bar {
+    width: 100%;
+    height: 8px;
+    background: #e2e8f0;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 8px;
+}
+
+.limit-fill {
+    height: 100%;
+    background: var(--accent-color);
+    border-radius: 4px;
+}
+
+.limit-hint {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+/* لوحة التحكم الجانبية */
+.controls-box {
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    padding: 26px;
+    box-shadow: var(--shadow-sm);
+}
+
+.c-box-header {
+    border-bottom: 1px solid #f1f5f9;
+    padding-bottom: 14px;
+    margin-bottom: 20px;
+}
+
+.c-box-header h4 {
+    font-size: 16px;
+    color: var(--primary-color);
+    margin-bottom: 4px;
+}
+
+.c-box-header small {
+    color: var(--text-secondary);
+    font-size: 12.5px;
+}
+
+/* قائمة التبديل */
+.control-switch-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.control-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid #f8fafc;
+}
+
+.control-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.ctrl-info strong {
+    display: block;
+    font-size: 13.5px;
+    color: var(--primary-color);
+    margin-bottom: 3px;
+}
+
+.ctrl-info p {
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin: 0;
+}
+
+.control-item.freeze-danger strong {
+    color: var(--danger-color);
+}
+
+/* سلايدر الإنفاق اليومي */
+.spending-slider-wrap {
+    margin: 18px 0 22px;
+}
+
+.slider-val-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 13.5px;
+}
+
+.slider-val-header strong {
+    color: var(--accent-color);
+    font-size: 16px;
+}
+
+.spending-slider-wrap input[type="range"] {
+    width: 100%;
+    accent-color: var(--accent-color);
+    cursor: pointer;
+}
+
+.slider-limits {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11.5px;
+    color: var(--text-secondary);
+    margin-top: 6px;
+}
+
+.btn-save-limit {
+    padding: 10px 20px;
+    background: var(--primary-color);
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-save-limit:hover {
+    background: var(--accent-color);
+}

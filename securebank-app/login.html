@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>البنك الرقمي - تسجيل الدخول الآمن</title>
+    <!-- استدعاء خط Cairo الاحترافي -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/login.css">
+</head>
+<body>
+
+    <!-- الهيدر العلوي -->
+    <header class="top-bar">
+        <div class="container header-container">
+            <div class="logo">
+                <span class="bank-icon">🏦</span>
+                <span class="bank-name">SecureBank</span>
+            </div>
+            <div class="security-badge">
+                <span class="lock-icon">🔒</span>
+                <span>بوابة إلكترونية مشفرة (256-bit SSL)</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- المحتوى الرئيسي / كارت تسجيل الدخول -->
+    <main class="login-wrapper">
+        <div class="login-card">
+            <div class="card-header">
+                <h2>تسجيل الدخول إلى حسابك</h2>
+                <p>أدخل بيانات المعرّف المصرفي وكلمة المرور للمتابعة</p>
+            </div>
+
+            <!-- رسالة خطأ تظهر بالـ JS لو البيانات غلط -->
+            <div id="error-alert" class="alert hidden">
+                بيانات الدخول غير صحيحة، يرجى المحاولة مرة أخرى.
+            </div>
+
+            <form id="login-form">
+                <!-- معرّف المستخدم -->
+                <div class="input-group">
+                    <label for="username">اسم المستخدم / رقم الهوية</label>
+                    <input 
+                        type="text" 
+                        id="username" 
+                        placeholder="أدخل معرّفك المصرفي" 
+                        required 
+                        autocomplete="off"
+                    >
+                </div>
+
+                <!-- كلمة المرور -->
+                <div class="input-group">
+                    <label for="password">كلمة المرور</label>
+                    <div class="password-wrapper">
+                        <input 
+                            type="password" 
+                            id="password" 
+                            placeholder="أدخل كلمة المرور" 
+                            required
+                        >
+                        <button type="button" id="toggle-password" class="toggle-btn" aria-label="إظهار كلمة المرور">
+                            👁️
+                        </button>
+                    </div>
+                </div>
+
+                <!-- خيارات إضافية -->
+                <div class="form-options">
+                    <label class="remember-me">
+                        <input type="checkbox" id="remember-id">
+                        <span>تذكر معرّف المستخدم فقط</span>
+                    </label>
+                    <a href="forgot-password.html" class="forgot-link">نسيت كلمة المرور؟</a>
+                </div>
+
+                <!-- زر الدخول -->
+                <button type="submit" id="submit-btn" class="btn-primary">
+                    <span class="btn-text">دخول آمن</span>
+                </button>
+            </form>
+
+            <div class="card-footer">
+    <p>ليس لديك حساب إلكتروني؟ <a href="register.html">سجل الآن</a></p>
+</div>
+        </div>
+
+        <!-- دا كود بتاع تحذير الأمان المصرفي -->
+        <div class="security-notice">
+            <p>🛡️ <strong>تنبيه أمان:</strong> موظفو البنك لن يطلبوا منك مطلقاً كلمة المرور أو رمز التحقق (OTP) عبر الهاتف أو البريد.</p>
+        </div>
+    </main>
+
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/login.js"></script>
+</body>
+</html>

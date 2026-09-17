@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مركز الأمان والخصوصية - SecureBank</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/dashboard.css">
+    <link rel="stylesheet" href="assets/css/security.css">
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/auth.js"></script>
+</head>
+<body>
+
+    <!-- الشريط الجانبي الموحد -->
+    <aside class="sidebar">
+        <div class="sidebar-brand">
+            <span class="bank-icon">🏦</span>
+            <h2>SecureBank</h2>
+        </div>
+
+        <nav class="nav-menu">
+            <a href="dashboard.html" class="nav-item">
+                <span class="icon">📊</span>
+                <span>لوحة التحكم</span>
+            </a>
+            <a href="transfer.html" class="nav-item">
+                <span class="icon">💸</span>
+                <span>التحويلات المالية</span>
+            </a>
+            <a href="cards.html" class="nav-item">
+                <span class="icon">💳</span>
+                <span>البطاقات المصرفية</span>
+            </a>
+            <a href="transactions.html" class="nav-item">
+                <span class="icon">📑</span>
+                <span>كشف الحساب</span>
+            </a>
+            <a href="security.html" class="nav-item active">
+                <span class="icon">⚙️</span>
+                <span>إعدادات الأمان</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <button id="logout-btn" class="logout-btn">
+                <span class="icon">🚪</span>
+                <span>تسجيل الخروج</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- المحتوى الرئيسي -->
+    <main class="main-wrapper">
+        <!-- الشريط العلوي -->
+        <header class="top-nav">
+            <div class="welcome-msg">
+                <h3>مركز الأمان وإدارة الهوية 🛡️</h3>
+                <p>تحكم في خصوصية حسابك، كلمات المرور، وراقب الجلسات المتصلة بحسابك البنكي</p>
+            </div>
+            <div class="top-actions">
+                <span class="security-level-pill">
+                    <span class="shield-green-dot"></span>
+                    <span>مستوى الحماية: ممتاز (85%)</span>
+                </span>
+            </div>
+        </header>
+
+        <!-- بطاقة مؤشر الصحة الأمنية (Security Health Banner) -->
+        <section class="security-health-card">
+            <div class="health-content">
+                <div class="health-badge">تقييم سلامة الحساب</div>
+                <h2>حسابك محمي بتشفير متعدد الطبقات</h2>
+                <p>قم بتفعيل المصادقة الثنائية عبر تطبيق Authenticator للوصول إلى أعلى معايير الحماية 100%.</p>
+                <div class="health-progress-wrap">
+                    <div class="health-progress-bar">
+                        <div class="progress-fill" style="width: 85%;"></div>
+                    </div>
+                    <span class="health-score-val">85 / 100</span>
+                </div>
+            </div>
+            <div class="health-icon-box">🛡️</div>
+        </section>
+
+        <div class="security-grid-layout">
+            <!-- العمود الأول: تغيير كلمة المرور والتحقق بخطوتين -->
+            <div class="security-col-main">
+                
+                <!-- كارت تغيير كلمة المرور -->
+                <section class="sec-box">
+                    <div class="sec-box-header">
+                        <div>
+                            <h4>تحديث كلمة المرور</h4>
+                            <small>احرص على استخدام تركيبة معقدة لا تستخدمها في مواقع أخرى</small>
+                        </div>
+                        <span class="sec-icon">🔑</span>
+                    </div>
+
+                    <form id="change-pwd-form" class="sec-form" novalidate>
+                        <div class="form-group">
+                            <label for="current-pwd">كلمة المرور الحالية</label>
+                            <input type="password" id="current-pwd" placeholder="أدخل كلمة المرور الحالية" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="new-pwd">كلمة المرور الجديدة</label>
+                            <input type="password" id="new-pwd" placeholder="8 أحرف على الأقل تحتوي على رموز وأرقام" required>
+                            
+                            <!-- مقياس قوة كلمة المرور اللحظي -->
+                            <div class="pwd-meter-box">
+                                <div class="meter-bar"><div id="meter-fill" class="meter-fill"></div></div>
+                                <span id="meter-text" class="meter-text">أدخل كلمة المرور</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="confirm-pwd">تأكيد كلمة المرور الجديدة</label>
+                            <input type="password" id="confirm-pwd" placeholder="أعد إدخال كلمة المرور" required>
+                        </div>
+
+                        <div id="pwd-alert" class="sec-alert hidden"></div>
+
+                        <button type="submit" class="btn-sec-submit" id="btn-save-pwd">حفظ كلمة المرور الجديدة</button>
+                    </form>
+                </section>
+
+                <!-- كارت طبقات الحماية والمصادقة (2FA) -->
+                <section class="sec-box">
+                    <div class="sec-box-header">
+                        <div>
+                            <h4>طبقات الحماية والمصادقة الثنائية (2FA)</h4>
+                            <small>خطوات أمان إضافية عند التحويل أو تسجيل الدخول من جهاز جديد</small>
+                        </div>
+                        <span class="sec-icon">📱</span>
+                    </div>
+
+                    <div class="toggle-list">
+                        <!-- خيار رسائل SMS -->
+                        <div class="toggle-item">
+                            <div class="toggle-info">
+                                <strong>رمز التحقق عبر رسائل الهاتف (SMS OTP)</strong>
+                                <p>إرسال رمز مؤقت على رقم هاتفك المسجل (01xxxxxxx90) عند كل معاملة سحب أو تحويل.</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" id="toggle-sms" checked>
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+
+                        <!-- خيار تطبيق المصادقة -->
+                        <div class="toggle-item">
+                            <div class="toggle-info">
+                                <strong>تطبيقات المصادقة (Google / Microsoft Authenticator)</strong>
+                                <p>استخدام أكواد مشفرة تتجدد كل 30 ثانية لزيادة حماية حسابك من الاختراق.</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" id="toggle-app">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+
+                        <!-- خيار التنبيهات الفورية -->
+                        <div class="toggle-item">
+                            <div class="toggle-info">
+                                <strong>إشعارات الأمان للدخول الفوري</strong>
+                                <p>إرسال تنبيه عبر البريد الإلكتروني والتطبيق فور تسجيل الدخول من أي متصفح جديد.</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" id="toggle-login-alerts" checked>
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+
+            <!-- العمود الثاني: الجلسات النشطة والأجهزة المتصلة -->
+            <div class="security-col-side">
+                
+                <section class="sec-box">
+                    <div class="sec-box-header">
+                        <div>
+                            <h4>الأجهزة والجلسات النشطة</h4>
+                            <small>الأجهزة التي سجلت الدخول بحسابك حالياً</small>
+                        </div>
+                        <button type="button" class="btn-kill-all" id="btn-terminate-all">تسجيل الخروج من كل الأجهزة</button>
+                    </div>
+
+                    <div class="sessions-list" id="sessions-container">
+                        <!-- الجلسة الحالية -->
+                        <div class="session-item current">
+                            <div class="device-icon">💻</div>
+                            <div class="device-meta">
+                                <div class="device-title">
+                                    <strong>متصفح Chrome على Windows</strong>
+                                    <span class="curr-badge">هذا الجهاز (نشط الآن)</span>
+                                </div>
+                                <small>القاهرة، مصر • IP: 197.35.xxx.xx</small>
+                            </div>
+                        </div>
+
+                        <!-- جهاز هاتف متصل -->
+                        <div class="session-item">
+                            <div class="device-icon">📱</div>
+                            <div class="device-meta">
+                                <div class="device-title">
+                                    <strong>تطبيق SecureBank على iPhone 14</strong>
+                                    <button type="button" class="btn-kill-single" data-device="iPhone 14">إنهاء الجلسة</button>
+                                </div>
+                                <small>الجيزة، مصر • آخر نشاط: منذ ساعتين</small>
+                            </div>
+                        </div>
+
+                        <!-- جلسة تابلت -->
+                        <div class="session-item">
+                            <div class="device-icon">📟</div>
+                            <div class="device-meta">
+                                <div class="device-title">
+                                    <strong>متصفح Safari على iPad Pro</strong>
+                                    <button type="button" class="btn-kill-single" data-device="iPad Pro">إنهاء الجلسة</button>
+                                </div>
+                                <small>الإسكندرية، مصر • آخر نشاط: أمس، 04:30 م</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="security-tip-card">
+                        <span class="tip-icon">💡</span>
+                        <p>إذا لاحظت أي جهاز أو نشاط غير مألوف، بادر فوراً بإنهاء الجلسة وتغيير كلمة مرور حسابك.</p>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </main>
+
+    <script src="assets/js/dashboard.js"></script>
+    <script src="assets/js/security.js"></script>
+</body>
+</html>

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حاسبة التمويل والقروض - SecureBank</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/global.css">
+    <link rel="stylesheet" href="assets/css/calculator.css">
+</head>
+<body>
+
+    <!-- الهيدر الموحد -->
+    <header class="site-header">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <span class="bank-icon">🏦</span>
+                <span class="bank-name">SecureBank</span>
+            </a>
+
+            <nav class="main-nav">
+                <a href="index.html">الرئيسية</a>
+                <a href="services.html">الخدمات المصرفية</a>
+                <a href="calculator.html" class="active">حاسبة التمويل</a>
+                <a href="public-cards.html">البطاقات</a>
+                <a href="about.html">عن البنك</a>
+            </nav>
+
+            <div class="header-actions">
+                <a href="login.html" class="btn-login-outline">تسجيل الدخول</a>
+                <a href="register.html" class="btn-register-solid">افتح حسابك الآن</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- بانر الصفحة التفاعلي (Hero Media Banner) -->
+    <section class="calc-hero-banner">
+        <!-- ضع صورة البانر المحلية أو رابطك هنا -->
+        <div class="banner-bg" style="background-image: url('assets/images/calco.avif');"></div>
+        <div class="banner-overlay"></div>
+        
+        <div class="container banner-content">
+            <span class="banner-badge">تخطيط مالي ذكي ودقيق</span>
+            <h1 class="banner-title">احسب قسطك الشهري بدقة وشفافية مطلقة</h1>
+            <p class="banner-desc">
+                صمم خطتك التمويلية المناسبة لدخلك الشهري، وتعرف على جدول السداد وقيمة الفائدة الإجمالية بدون أي رسوم إدارية غير معلنة.
+            </p>
+            <div class="banner-tags">
+                <span class="pill-tag">✓ فائدة تنافسية ثابتة</span>
+                <span class="pill-tag">✓ فترات سداد حتى 7 سنوات</span>
+                <span class="pill-tag">✓ موافقة ائتمانية فورية</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- المحتوى التفاعلي للحاسبة -->
+    <main class="calc-main-container container">
+        
+        <!-- أزرار اختيار نوع التمويل -->
+        <div class="loan-type-wrapper">
+            <div class="loan-type-tabs">
+                <button type="button" class="type-btn active" data-rate="0.125" data-max="1500000" data-months="84">
+                    <span class="btn-icon">🚗</span>
+                    <span class="btn-text">تمويل شخصي <strong>(12.5%)</strong></span>
+                </button>
+                <button type="button" class="type-btn" data-rate="0.14" data-max="2000000" data-months="60">
+                    <span class="btn-icon">🚘</span>
+                    <span class="btn-text">تمويل سيارات <strong>(14.0%)</strong></span>
+                </button>
+                <button type="button" class="type-btn" data-rate="0.09" data-max="5000000" data-months="240">
+                    <span class="btn-icon">🏠</span>
+                    <span class="btn-text">تمويل عقاري مدعوم <strong>(9.0%)</strong></span>
+                </button>
+            </div>
+        </div>
+
+        <div class="calc-grid-layout">
+            
+            <!-- لوحة التحكم والمدخلات السلايدر -->
+            <section class="controls-panel">
+                <div class="panel-header">
+                    <h3>تحديد معايير التمويل</h3>
+                    <p>قم بتحريك المؤشرات لتعديل القيمة وفترة السداد</p>
+                </div>
+
+                <!-- شريط مبلغ التمويل -->
+                <div class="slider-group">
+                    <div class="group-header">
+                        <label for="loan-sum">مبلغ التمويل المطلوب</label>
+                        <span class="slider-val-badge" id="sum-display">250,000 ج.م</span>
+                    </div>
+                    <div class="range-wrapper">
+                        <input type="range" id="loan-sum" min="20000" max="1500000" step="10000" value="250000">
+                    </div>
+                    <div class="slider-bounds">
+                        <small id="min-amount-label">20,000 ج.م</small>
+                        <small id="max-amount-label">1,500,000 ج.م</small>
+                    </div>
+                </div>
+
+                <!-- شريط مدة السداد -->
+                <div class="slider-group">
+                    <div class="group-header">
+                        <label for="loan-period">مدة السداد المطلوبة</label>
+                        <span class="slider-val-badge" id="period-display">36 شهر (3 سنوات)</span>
+                    </div>
+                    <div class="range-wrapper">
+                        <input type="range" id="loan-period" min="6" max="84" step="6" value="36">
+                    </div>
+                    <div class="slider-bounds">
+                        <small>6 أشهر</small>
+                        <small id="max-period-label">84 شهر (7 سنوات)</small>
+                    </div>
+                </div>
+
+                <!-- صندوق ملاحظات وشروط الأهلية -->
+                <div class="loan-conditions-card">
+                    <div class="note-icon">💡</div>
+                    <div class="note-text">
+                        <strong>ضوابط ومعايير المنح:</strong>
+                        <p>يشترط ألا يتجاوز القسط الشهري 50% من صافي الدخل المثبت للعميل وفق تعليمات البنك المركزي المصري.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- لوحة ملخص النتائج البصرية (Summary Card) -->
+            <aside class="summary-panel">
+                <div class="summary-box">
+                    <span class="summary-label">القسط الشهري التقديري</span>
+                    <div class="installment-display">
+                        <h2 class="main-installment" id="monthly-out">0</h2>
+                        <span class="currency-tag">ج.م / شهرياً</span>
+                    </div>
+                    
+                    <hr class="calc-divider">
+
+                    <div class="detail-rows">
+                        <div class="d-row">
+                            <span class="row-label">أصل مبلغ القرض:</span>
+                            <strong id="principal-out" class="row-val">0 ج.م</strong>
+                        </div>
+                        <div class="d-row">
+                            <span class="row-label">إجمالي الفائدة المحتسبة:</span>
+                            <strong id="interest-out" class="row-val highlight-val">0 ج.م</strong>
+                        </div>
+                        <div class="d-row total-row">
+                            <span class="row-label">إجمالي المبلغ مستحق السداد:</span>
+                            <strong id="total-out" class="row-val primary-val">0 ج.م</strong>
+                        </div>
+                    </div>
+
+                    <!-- شريط النسبة التوضيحي البصري -->
+                    <div class="ratio-progress-container">
+                        <div class="ratio-bar">
+                            <div id="ratio-principal" class="part-principal"></div>
+                            <div id="ratio-interest" class="part-interest"></div>
+                        </div>
+                        <div class="ratio-legend">
+                            <span><i class="dot principal"></i> أصل المبلغ</span>
+                            <span><i class="dot interest"></i> إجمالي الفائدة</span>
+                        </div>
+                    </div>
+
+                    <a href="register.html" class="btn-apply-loan">تقديم طلب التمويل الآن ←</a>
+                </div>
+            </aside>
+
+        </div>
+    </main>
+
+    <!-- الفوتر الموحد -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <div class="logo white">
+                    <span class="bank-icon">🏦</span>
+                    <span class="bank-name">SecureBank</span>
+                </div>
+                <p>البنك الرقمي الرائد في تقديم الحلول المصرفية السحابية الآمنة تحت إشراف ورقابة البنك المركزي المصري.</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>روابط سريعة</h4>
+                <ul>
+                    <li><a href="services.html">الخدمات المصرفية</a></li>
+                    <li><a href="calculator.html">حاسبة التمويل</a></li>
+                    <li><a href="public-cards.html">البطاقات</a></li>
+                    <li><a href="about.html">عن البنك</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>الدعم والمساعدة</h4>
+                <p>الخط الساخن: <strong>19888</strong></p>
+                <p>البريد: <strong>support@securebank.com</strong></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 SecureBank. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <script src="assets/js/main-nav.js"></script>
+    <script src="assets/js/calculator.js"></script>
+</body>
+</html>

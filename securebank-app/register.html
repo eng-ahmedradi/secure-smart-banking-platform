@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فتح حساب بنكي جديد - SecureBank</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/login.css">
+    <link rel="stylesheet" href="assets/css/auth-pages.css">
+</head>
+<body>
+
+    <header class="top-bar">
+        <div class="container header-container">
+            <div class="logo">
+                <span class="bank-icon">🏦</span>
+                <span class="bank-name">SecureBank</span>
+            </div>
+            <div class="security-badge">
+                <span class="lock-icon">🔒</span>
+                <span>فتح حساب رقمي فوري</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="login-wrapper">
+        <div class="login-card wide-card">
+            <div class="card-header">
+                <h2>انضم إلى SecureBank</h2>
+                <p>افتح حسابك البنكي رقمياً خلال دقائق معدودة</p>
+            </div>
+
+            <form id="register-form">
+                <div class="form-row">
+                    <div class="input-group col">
+                        <label for="reg-fullname">الاسم الرباعي بالكامل</label>
+                        <input type="text" id="reg-fullname" placeholder="الاسم كما هو مدون بالبطاقة" required>
+                    </div>
+                    <div class="input-group col">
+                        <label for="reg-national-id">رقم الهوية الوطنية / الرقم القومي</label>
+                        <input type="text" id="reg-national-id" maxlength="14" placeholder="14 رقم قومي" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="input-group col">
+                        <label for="reg-phone">رقم الهاتف المحمول</label>
+                        <input type="tel" id="reg-phone" placeholder="01xxxxxxxxx" required>
+                    </div>
+                    <div class="input-group col">
+                        <label for="reg-email">البريد الإلكتروني</label>
+                        <input type="email" id="reg-email" placeholder="name@example.com" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="input-group col">
+                        <label for="reg-account-type">نوع الحساب المطلوب</label>
+                        <select id="reg-account-type" required>
+                            <option value="savings">حساب توفير إلكتروني ذكي (عائد شهري)</option>
+                            <option value="current">حساب جاري رئيسي (بدون فوائد مع دفتر شيكات)</option>
+                            <option value="youth">حساب الشباب الميسر (بدون حد أدنى)</option>
+                        </select>
+                    </div>
+                    <div class="input-group col">
+                        <label for="reg-password">كلمة مرور الحساب الإلكتروني</label>
+                        <input type="password" id="reg-password" placeholder="8 خانات على الأقل" required>
+                    </div>
+                </div>
+
+                <div class="terms-group">
+                    <label class="remember-me">
+                        <input type="checkbox" required>
+                        <span>أوافق على الشروط والأحكام المصرفية ولوائح مكافحة غسيل الأموال.</span>
+                    </label>
+                </div>
+
+                <button type="submit" id="reg-submit-btn" class="btn-primary" style="margin-top: 10px;">
+                    إرسال طلب فتح الحساب
+                </button>
+            </form>
+
+            <!-- نافذة شاشة استلام الحساب -->
+            <div id="reg-success-box" class="hidden" style="text-align: center; padding: 25px 0;">
+                <div style="font-size: 50px; margin-bottom: 12px;">🎉</div>
+                <h3 style="color: var(--accent-color); margin-bottom: 8px;">تهانينا! تم إنشاء حسابك البنكي</h3>
+                <p style="font-size: 13.5px; color: var(--text-muted); margin-bottom: 18px;">
+                    تم تخصيص معرّفك المصرفي ورقم حسابك بنجاح:
+                </p>
+                
+                <div class="account-badge-box">
+                    <div>
+                        <small>اسم المستخدم / المعرّف:</small>
+                        <strong id="created-username">user_basha</strong>
+                    </div>
+                    <div>
+                        <small>رقم الـ IBAN المبدئي:</small>
+                        <strong id="created-iban">EG94 0002 0182 9941 2291 001</strong>
+                    </div>
+                </div>
+
+                <a href="login.html" class="btn-primary" style="display: block; text-decoration: none; margin-top: 20px;">
+                    تسجيل الدخول إلى حسابك الآن
+                </a>
+            </div>
+
+            <div class="card-footer">
+                <p>لديك حساب بالفعل؟ <a href="login.html">تسجيل الدخول</a></p>
+            </div>
+        </div>
+    </main>
+
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/register.js"></script>
+</body>
+</html>

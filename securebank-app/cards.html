@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدارة البطاقات المصرفية - SecureBank</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/dashboard.css">
+    <link rel="stylesheet" href="assets/css/cards.css">
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/auth.js"></script>
+</head>
+<body>
+
+    <!-- الشريط الجانبي الموحد -->
+    <aside class="sidebar">
+        <div class="sidebar-brand">
+            <span class="bank-icon">🏦</span>
+            <h2>SecureBank</h2>
+        </div>
+
+        <nav class="nav-menu">
+            <a href="dashboard.html" class="nav-item">
+                <span class="icon">📊</span>
+                <span>لوحة التحكم</span>
+            </a>
+            <a href="transfer.html" class="nav-item">
+                <span class="icon">💸</span>
+                <span>التحويلات المالية</span>
+            </a>
+            <a href="cards.html" class="nav-item active">
+                <span class="icon">💳</span>
+                <span>البطاقات المصرفية</span>
+            </a>
+            <a href="transactions.html" class="nav-item">
+                <span class="icon">📑</span>
+                <span>كشف الحساب</span>
+            </a>
+            <a href="security.html" class="nav-item">
+                <span class="icon">⚙️</span>
+                <span>إعدادات الأمان</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <button id="logout-btn" class="logout-btn">
+                <span class="icon">🚪</span>
+                <span>تسجيل الخروج</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- المحتوى الرئيسي -->
+    <main class="main-wrapper">
+        <!-- الشريط العلوي -->
+        <header class="top-nav">
+            <div class="welcome-msg">
+                <h3>إدارة البطاقات والتحكم الذكي 💳</h3>
+                <p>تحكم في حدود استخدام بطاقتك، تجميدها لحظياً، ومتابعة نفقاتك الشهرية</p>
+            </div>
+            
+            <div class="top-actions">
+                <button type="button" class="btn-new-card" id="btn-request-replacement">
+                    <span>+ طلب إصدار بطاقة جديدة</span>
+                </button>
+            </div>
+        </header>
+
+        <div class="cards-management-grid">
+            
+            <!-- العمود الأيمن: البطاقة التفاعلية القابلة للقلب ومعلوماتها -->
+            <section class="card-visual-column">
+                
+                <!-- حاوية الكارت ثلاثي الأبعاد -->
+                <div class="card-flip-scene">
+                    <div class="flipper-card" id="interactive-card-element">
+                        
+                        <!-- الوجه الأمامي للكارت -->
+                        <div class="card-face card-front">
+                            <div class="card-shine-layer"></div>
+                            <div class="cf-top">
+                                <span class="cf-bank-title">SecureBank Platinum</span>
+                                <span class="cf-brand">VISA</span>
+                            </div>
+                            <div class="cf-chip"></div>
+                            <div class="cf-number" id="display-card-number">•••• •••• •••• 4490</div>
+                            <div class="cf-bottom">
+                                <div>
+                                    <small>حامل البطاقة</small>
+                                    <strong id="display-card-holder">محمود محمد الباشا</strong>
+                                </div>
+                                <div class="cf-exp">
+                                    <small>صالح حتى</small>
+                                    <strong id="display-card-expiry">08/29</strong>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- الوجه الخلفي للكارت -->
+                        <div class="card-face card-back">
+                            <div class="mag-stripe"></div>
+                            <div class="cvv-section">
+                                <span class="sig-strip">SECURE SIGNATURE</span>
+                                <span class="cvv-box" id="display-card-cvv">•••</span>
+                            </div>
+                            <p class="back-notice">
+                                هذه البطاقة ملك لـ SecureBank ومحمية بتشفير دولي معتمد. في حال الفقد يرجى الاتصال فوراً بـ 19888.
+                            </p>
+                            <div class="back-logo">VISA Hologram</div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- أزرار التحكم السريع في عرض الكارت -->
+                <div class="card-quick-actions">
+                    <button type="button" class="action-pill-btn" id="btn-reveal-details">
+                        <span id="reveal-icon">👁️</span>
+                        <span id="reveal-text">إظهار أرقام الكارت</span>
+                    </button>
+                    <button type="button" class="action-pill-btn" id="btn-flip-card">
+                        <span>🔄</span>
+                        <span>قلب الكارت (CVV)</span>
+                    </button>
+                </div>
+
+                <!-- تفاصيل الحساب الائتماني المرتبط -->
+                <div class="credit-limits-card">
+                    <h4>الحد الائتماني ونسبة الاستهلاك</h4>
+                    <div class="limit-status-row">
+                        <div>
+                            <span>المتبقي في الرصيد:</span>
+                            <strong>57,300.00 ج.م</strong>
+                        </div>
+                        <div>
+                            <span>الحد الكلي الممنوح:</span>
+                            <small>100,000.00 ج.م</small>
+                        </div>
+                    </div>
+
+                    <div class="limit-progress-bar">
+                        <div class="limit-fill" style="width: 42.7%;"></div>
+                    </div>
+                    <small class="limit-hint">تم استهلاك 42.7% من رصيدك الائتماني هذا الشهر.</small>
+                </div>
+
+            </section>
+
+            <!-- العمود الأيسر: إعدادات الأمان ومفاتيح التحكم الفورية -->
+            <section class="card-controls-column">
+                
+                <div class="controls-box">
+                    <div class="c-box-header">
+                        <h4>خيارات الأمان السريع والتحكم</h4>
+                        <small>التغييرات تنفذ فورياً على أنظمة الصراف ونقاط البيع</small>
+                    </div>
+
+                    <div class="control-switch-list">
+                        <!-- تجميد البطاقة -->
+                        <div class="control-item freeze-danger">
+                            <div class="ctrl-info">
+                                <strong>تجميد البطاقة مؤقتاً</strong>
+                                <p>إيقاف فوري لجميع عمليات السحب والشراء في حال فقدت الكارت أو نسيت مكانه.</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" id="toggle-freeze">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+
+                        <!-- الشراء عبر الإنترنت -->
+                        <div class="control-item">
+                            <div class="ctrl-info">
+                                <strong>المدفوعات والتسوق عبر الإنترنت</strong>
+                                <p>السماح بعمليات الشراء من المواقع الإلكترونية مع حماية كود OTP لكل معاملة.</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" id="toggle-online" checked>
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+
+                        <!-- الدفع اللاتلامسي Contactless -->
+                        <div class="control-item">
+                            <div class="ctrl-info">
+                                <strong>الدفع اللاتلامسي (Contactless / NFC)</strong>
+                                <p>الدفع السريع بتمرير البطاقة على نقاط البيع بدون إدخال الرقم السري للمعاملات الصغيرة.</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" id="toggle-contactless" checked>
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+
+                        <!-- الاستخدام الدولي بالخارج -->
+                        <div class="control-item">
+                            <div class="ctrl-info">
+                                <strong>المعاملات الدولية خارج مصر</strong>
+                                <p>تفعيل أو حظر استخدام الكارت في المتاجر وأجهزة الصراف خارج البلاد.</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" id="toggle-international">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ضبط الحد اليومي للمشتريات بالسلايدر -->
+                <div class="controls-box">
+                    <div class="c-box-header">
+                        <h4>الحد اليومي للشراء عبر الإنترنت ونقاط البيع</h4>
+                        <small>حدد سقف الإنفاق اليومي لحماية حسابك من العمليات غير المتوقعة</small>
+                    </div>
+
+                    <div class="spending-slider-wrap">
+                        <div class="slider-val-header">
+                            <span>الحد اليومي المعتمد:</span>
+                            <strong id="daily-limit-display">30,000 ج.م</strong>
+                        </div>
+                        <input type="range" id="daily-limit-slider" min="5000" max="80000" step="5000" value="30000">
+                        <div class="slider-limits">
+                            <small>5,000 ج.م</small>
+                            <small>80,000 ج.م</small>
+                        </div>
+                    </div>
+                    
+                    <button type="button" class="btn-save-limit" id="btn-save-limit">تحديث الحد اليومي</button>
+                </div>
+
+            </section>
+
+        </div>
+    </main>
+
+    <script src="assets/js/dashboard.js"></script>
+    <script src="assets/js/cards.js"></script>
+</body>
+</html>

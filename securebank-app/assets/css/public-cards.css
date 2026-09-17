@@ -1,0 +1,523 @@
+/* بانر الصفحة العلوي المطور */
+.cards-hero-banner {
+    position: relative;
+    width: 100%;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background-color: var(--primary-dark);
+}
+
+.banner-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.85);
+    transform: scale(1.03);
+    transition: transform 6s ease;
+}
+
+.cards-hero-banner:hover .banner-bg {
+    transform: scale(1);
+}
+
+.banner-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        90deg, 
+        rgba(7, 23, 34, 0.95) 0%, 
+        rgba(13, 40, 56, 0.82) 50%, 
+        rgba(7, 23, 34, 0.45) 100%
+    );
+}
+
+.banner-content {
+    position: relative;
+    z-index: 3;
+    max-width: 740px;
+    padding: 60px 24px;
+}
+
+.banner-badge {
+    display: inline-block;
+    background: rgba(2, 132, 199, 0.2);
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    color: #38bdf8;
+    padding: 5px 16px;
+    border-radius: 20px;
+    font-size: 12.5px;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+.banner-title {
+    font-size: 38px;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.35;
+    margin-bottom: 16px;
+    letter-spacing: -0.5px;
+}
+
+.banner-desc {
+    font-size: 16px;
+    color: #cbd5e1;
+    line-height: 1.8;
+    margin-bottom: 24px;
+}
+
+.banner-highlights {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.banner-highlights span {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #f1f5f9;
+    font-size: 13px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    backdrop-filter: blur(6px);
+}
+
+/* الحاوية الرئيسية */
+.cards-main-container {
+    padding: 60px 24px 90px;
+}
+
+/* أزرار التصفية */
+.card-type-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.card-type-tabs {
+    display: inline-flex;
+    background: #ffffff;
+    padding: 6px;
+    border-radius: 40px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.tab-btn {
+    padding: 10px 20px;
+    background: transparent;
+    border: none;
+    border-radius: 30px;
+    font-size: 13.5px;
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--text-muted);
+    transition: all 0.25s ease;
+}
+
+.tab-btn:hover {
+    color: var(--primary-color);
+}
+
+.tab-btn.active {
+    background: var(--primary-color);
+    color: #ffffff;
+    font-weight: 700;
+    box-shadow: 0 2px 8px rgba(13, 40, 56, 0.2);
+}
+
+/* شبكة البطاقات الرباعية (4 Columns Grid) */
+.cards-grid-four {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-bottom: 75px;
+}
+
+@media (max-width: 1200px) {
+    .cards-grid-four {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 680px) {
+    .cards-grid-four {
+        grid-template-columns: 1fr;
+    }
+}
+
+.card-product-box {
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 24px 20px 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: var(--shadow-sm);
+    position: relative;
+}
+
+.card-product-box:hover {
+    transform: translateY(-8px);
+    border-color: #cbd5e1;
+    box-shadow: var(--shadow-lg);
+}
+
+/* حاوية البطاقة ثلاثية الأبعاد */
+.tilt-card-container {
+    perspective: 1000px;
+    margin-bottom: 22px;
+}
+
+.mock-card-visual {
+    height: 185px;
+    border-radius: 14px;
+    padding: 20px;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* ثيمات البطاقات المختلفة */
+.mock-card-visual.platinum {
+    background: linear-gradient(135deg, #091319 0%, #1e293b 50%, #0f172a 100%);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.mock-card-visual.titanium {
+    background: linear-gradient(135deg, #9a3412 0%, #c2410c 50%, #ea580c 100%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.mock-card-visual.gold {
+    background: linear-gradient(135deg, #78350f 0%, #b45309 50%, #d97706 100%);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.mock-card-visual.emerald {
+    background: linear-gradient(135deg, #064e3b 0%, #047857 50%, #059669 100%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* لمعان زجاجي عاكس (Holographic Sheen) */
+.card-glass-shine {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 60%);
+    pointer-events: none;
+    opacity: 0.6;
+    transition: transform 0.2s ease;
+}
+
+.m-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13.5px;
+    font-weight: 700;
+}
+
+.m-network {
+    font-size: 15px;
+    letter-spacing: 1px;
+    font-style: italic;
+    font-weight: 800;
+}
+
+.m-chip {
+    width: 38px;
+    height: 26px;
+    background: linear-gradient(135deg, #fef08a 0%, #facc15 100%);
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.m-number {
+    letter-spacing: 3px;
+    font-family: monospace;
+    font-size: 15px;
+    direction: ltr;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.m-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    font-size: 11px;
+    direction: ltr;
+}
+
+.m-bottom small {
+    display: block;
+    font-size: 9px;
+    color: rgba(255, 255, 255, 0.75);
+    margin-bottom: 2px;
+}
+
+/* تفاصيل المنتج */
+.card-product-info {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: space-between;
+}
+
+.card-tag-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 700;
+    width: fit-content;
+    margin-bottom: 10px;
+}
+
+.badge-dark { background: #f1f5f9; color: #0f172a; }
+.badge-blue { background: #e0f2fe; color: #0369a1; }
+.badge-gold { background: #fef3c7; color: #92400e; }
+.badge-green { background: #dcfce7; color: #166534; }
+
+.card-product-info h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+.card-product-info p {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 16px;
+    min-height: 42px;
+}
+
+.perks-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 22px;
+    border-top: 1px dashed var(--border-color);
+    padding-top: 14px;
+}
+
+.perks-list li {
+    font-size: 12px;
+    color: var(--text-main);
+    margin-bottom: 9px;
+    line-height: 1.5;
+}
+
+.btn-order-card {
+    width: 100%;
+    padding: 12px;
+    background: var(--primary-color);
+    color: #ffffff;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: 13.5px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.btn-order-card:hover {
+    background: var(--accent-color);
+    box-shadow: 0 4px 14px rgba(2, 132, 199, 0.3);
+    transform: translateY(-2px);
+}
+
+/* قسم جدول المقارنة الفاخر */
+.comparison-section {
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 45px 32px;
+    box-shadow: var(--shadow-sm);
+}
+
+.section-heading {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 35px;
+}
+
+.sub-heading {
+    color: var(--accent-color);
+    font-size: 12.5px;
+    font-weight: 700;
+    display: inline-block;
+    margin-bottom: 6px;
+}
+
+.section-heading h2 {
+    font-size: 26px;
+    color: var(--primary-color);
+    font-weight: 800;
+    margin-bottom: 8px;
+}
+
+.section-heading p {
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+.cards-compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: right;
+    font-size: 13.5px;
+}
+
+.cards-compare-table th {
+    background: #f8fafc;
+    padding: 16px 18px;
+    border-bottom: 2px solid var(--border-color);
+    color: var(--primary-color);
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.cards-compare-table td {
+    padding: 16px 18px;
+    border-bottom: 1px solid #f1f5f9;
+    color: var(--text-main);
+}
+
+.cards-compare-table tr:hover td {
+    background: #fcfdfe;
+}
+
+/* المودال المنبثق */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(7, 23, 34, 0.65);
+    backdrop-filter: blur(6px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    padding: 20px;
+}
+
+.modal-card {
+    background: #ffffff;
+    width: 100%;
+    max-width: 480px;
+    border-radius: var(--radius-md);
+    padding: 30px;
+    box-shadow: var(--shadow-lg);
+    animation: modalPop 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalPop {
+    from { opacity: 0; transform: scale(0.94); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 14px;
+}
+
+.modal-header h3 {
+    font-size: 19px;
+    color: var(--primary-color);
+}
+
+.modal-header small {
+    color: var(--text-muted);
+    font-size: 12px;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 26px;
+    cursor: pointer;
+    color: var(--text-muted);
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 6px;
+}
+
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1.5px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    font-size: 13.5px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus, .form-group select:focus {
+    border-color: var(--accent-color);
+}
+
+.input-readonly {
+    background: #f8fafc;
+    font-weight: 700;
+    color: var(--accent-color);
+}
+
+.btn-confirm-apply {
+    width: 100%;
+    padding: 13px;
+    background: linear-gradient(135deg, var(--accent-color), var(--accent-hover));
+    color: #ffffff;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(2, 132, 199, 0.25);
+    transition: all 0.25s ease;
+    margin-top: 10px;
+}
+
+.btn-confirm-apply:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(2, 132, 199, 0.35);
+}
+
+@media (max-width: 768px) {
+    .banner-title {
+        font-size: 28px;
+    }
+}

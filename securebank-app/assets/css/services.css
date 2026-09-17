@@ -1,0 +1,404 @@
+/* بانر الصفحة العلوي المطور (Hero Media Banner) */
+.services-hero-banner {
+    position: relative;
+    width: 100%;
+    min-height: 420px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background-color: var(--primary-dark);
+}
+
+.banner-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.9);
+    transform: scale(1.03);
+    transition: transform 6s ease;
+}
+
+.services-hero-banner:hover .banner-bg {
+    transform: scale(1);
+}
+
+.banner-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        90deg, 
+        rgba(7, 23, 34, 0.94) 0%, 
+        rgba(13, 40, 56, 0.82) 50%, 
+        rgba(7, 23, 34, 0.45) 100%
+    );
+}
+
+.banner-content {
+    position: relative;
+    z-index: 3;
+    max-width: 720px;
+    padding: 60px 24px;
+}
+
+.banner-badge {
+    display: inline-block;
+    background: rgba(2, 132, 199, 0.2);
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    color: #38bdf8;
+    padding: 5px 16px;
+    border-radius: 20px;
+    font-size: 12.5px;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+.banner-title {
+    font-size: 38px;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.35;
+    margin-bottom: 16px;
+    letter-spacing: -0.5px;
+}
+
+.banner-desc {
+    font-size: 16px;
+    color: #cbd5e1;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+.banner-actions {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.btn-banner-primary {
+    padding: 12px 26px;
+    background: var(--accent-color);
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+    font-weight: 700;
+    font-size: 14.5px;
+    box-shadow: 0 4px 16px rgba(2, 132, 199, 0.3);
+    transition: all 0.25s ease;
+}
+
+.btn-banner-primary:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(2, 132, 199, 0.4);
+}
+
+.btn-banner-glass {
+    padding: 12px 24px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+    font-weight: 700;
+    font-size: 14.5px;
+    backdrop-filter: blur(8px);
+    transition: all 0.25s ease;
+}
+
+.btn-banner-glass:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+/* حاوية الخدمات والفلترة */
+.services-container {
+    padding: 60px 24px 90px;
+}
+
+.category-tabs-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.category-tabs {
+    display: inline-flex;
+    background: #ffffff;
+    padding: 6px;
+    border-radius: 40px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+    gap: 6px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.tab-btn {
+    padding: 10px 22px;
+    background: transparent;
+    border: none;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--text-muted);
+    transition: all 0.25s ease;
+}
+
+.tab-btn:hover {
+    color: var(--primary-color);
+}
+
+.tab-btn.active {
+    background: var(--primary-color);
+    color: #ffffff;
+    font-weight: 700;
+    box-shadow: 0 2px 8px rgba(13, 40, 56, 0.2);
+}
+
+/* شبكة كروت الميديا (Media Cards Grid) */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+    gap: 32px;
+}
+
+.service-media-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: var(--shadow-sm);
+}
+
+.service-media-card:hover {
+    transform: translateY(-8px);
+    border-color: #cbd5e1;
+    box-shadow: var(--shadow-lg);
+}
+
+/* النصف العلوي: الصورة والشارة العائمة */
+.card-image-box {
+    position: relative;
+    width: 100%;
+    height: 190px;
+    overflow: hidden;
+}
+
+.card-img {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.5s ease;
+}
+
+.service-media-card:hover .card-img {
+    transform: scale(1.08);
+}
+
+.card-floating-badge {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 11.5px;
+    font-weight: 700;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.badge-green {
+    background: rgba(240, 253, 244, 0.95);
+    color: #166534;
+    border: 1px solid #bbf7d0;
+}
+
+.badge-blue {
+    background: rgba(240, 249, 255, 0.95);
+    color: #0369a1;
+    border: 1px solid #bae6fd;
+}
+
+.badge-purple {
+    background: rgba(250, 245, 255, 0.95);
+    color: #7e22ce;
+    border: 1px solid #e9d5ff;
+}
+
+.badge-gold {
+    background: rgba(254, 252, 232, 0.95);
+    color: #854d0e;
+    border: 1px solid #fef08a;
+}
+
+/* النصف السفلي: المحتوى والأزرار */
+.card-content-box {
+    padding: 26px 24px 22px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: space-between;
+}
+
+.card-main-info h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+.card-main-info p {
+    font-size: 13.5px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 18px;
+}
+
+.srv-perks {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 24px;
+    border-top: 1px dashed var(--border-color);
+    padding-top: 16px;
+}
+
+.srv-perks li {
+    font-size: 12.5px;
+    color: var(--text-main);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.check-icon {
+    color: var(--accent-color);
+    font-weight: 800;
+}
+
+/* أزرار الكارت */
+.srv-actions {
+    display: flex;
+    gap: 12px;
+}
+
+.btn-details {
+    flex: 1;
+    padding: 11px;
+    background: #f8fafc;
+    border: 1.5px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    color: var(--primary-color);
+    transition: all 0.2s ease;
+}
+
+.btn-details:hover {
+    background: #ffffff;
+    border-color: var(--primary-color);
+}
+
+.btn-apply {
+    flex: 1.4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 11px;
+    background: var(--primary-color);
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    font-weight: 700;
+    transition: all 0.25s ease;
+}
+
+.btn-apply:hover {
+    background: var(--primary-soft);
+    transform: translateY(-1px);
+}
+
+/* النافذة المنبثقة للشروط (Modal) */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(7, 23, 34, 0.65);
+    backdrop-filter: blur(6px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    padding: 20px;
+}
+
+.modal-card {
+    background: #ffffff;
+    width: 100%;
+    max-width: 520px;
+    border-radius: var(--radius-md);
+    padding: 28px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    animation: modalPop 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalPop {
+    from { opacity: 0; transform: scale(0.94); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 12px;
+}
+
+.modal-header h3 {
+    font-size: 18px;
+    color: var(--primary-color);
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 26px;
+    cursor: pointer;
+    color: var(--text-muted);
+}
+
+.close-btn:hover {
+    color: var(--text-main);
+}
+
+.modal-body {
+    font-size: 13.5px;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 24px;
+}
+
+.modal-body ul {
+    margin-top: 10px;
+    padding-right: 18px;
+}
+
+@media (max-width: 768px) {
+    .banner-title {
+        font-size: 28px;
+    }
+    .category-tabs {
+        border-radius: 16px;
+    }
+}

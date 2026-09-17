@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>كشف الحساب والمعاملات - SecureBank</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/dashboard.css">
+    <link rel="stylesheet" href="assets/css/transactions.css">
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/auth.js"></script>
+</head>
+<body>
+
+    <!-- الشريط الجانبي الموحد -->
+    <aside class="sidebar">
+        <div class="sidebar-brand">
+            <span class="bank-icon">🏦</span>
+            <h2>SecureBank</h2>
+        </div>
+
+        <nav class="nav-menu">
+            <a href="dashboard.html" class="nav-item">
+                <span class="icon">📊</span>
+                <span>لوحة التحكم</span>
+            </a>
+            <a href="transfer.html" class="nav-item">
+                <span class="icon">💸</span>
+                <span>التحويلات المالية</span>
+            </a>
+            <a href="cards.html" class="nav-item">
+                <span class="icon">💳</span>
+                <span>البطاقات المصرفية</span>
+            </a>
+            <a href="transactions.html" class="nav-item active">
+                <span class="icon">📑</span>
+                <span>كشف الحساب</span>
+            </a>
+            <a href="security.html" class="nav-item">
+                <span class="icon">⚙️</span>
+                <span>إعدادات الأمان</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <button id="logout-btn" class="logout-btn">
+                <span class="icon">🚪</span>
+                <span>تسجيل الخروج</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- المحتوى الرئيسي -->
+    <main class="main-wrapper">
+        <!-- الشريط العلوي -->
+        <header class="top-nav">
+            <div class="welcome-msg">
+                <h3>كشف الحساب والعمليات المصرفية 📑</h3>
+                <p>سجل رقمي دقيق لجميع حركات الإيداع، الخصم، والمدفوعات الإلكترونية</p>
+            </div>
+            
+            <div class="top-actions">
+                <button type="button" class="btn-export-pdf" id="btn-export-pdf">
+                    <span>📥 تحميل كشف الحساب (PDF)</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- كروت مؤشرات التدفق المالي (Cashflow KPIs) -->
+        <section class="cashflow-kpi-grid">
+            <div class="kpi-box in-flow">
+                <div class="kpi-icon-wrap">↓</div>
+                <div>
+                    <span class="kpi-title">إجمالي المقبوضات (الوارد)</span>
+                    <strong class="kpi-amount" id="kpi-in-amount">+ 42,500.00 ج.م</strong>
+                    <small>الشهر الحالي (سبتمبر 2026)</small>
+                </div>
+            </div>
+
+            <div class="kpi-box out-flow">
+                <div class="kpi-icon-wrap">↑</div>
+                <div>
+                    <span class="kpi-title">إجمالي المصروفات (الصادر)</span>
+                    <strong class="kpi-amount" id="kpi-out-amount">- 11,270.00 ج.م</strong>
+                    <small>عمليات مشتريات وفواتير</small>
+                </div>
+            </div>
+
+            <div class="kpi-box net-flow">
+                <div class="kpi-icon-wrap">⚖️</div>
+                <div>
+                    <span class="kpi-title">صافي التدفق النقدي</span>
+                    <strong class="kpi-amount text-primary" id="kpi-net-amount">+ 31,230.00 ج.م</strong>
+                    <small class="text-success">مؤشر ادخار إيجابي (+73%)</small>
+                </div>
+            </div>
+        </section>
+
+        <!-- صندوق الفلاتر والبحث المتقدم -->
+        <section class="filter-controls-panel">
+            <div class="search-input-box">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="tx-search-input" placeholder="ابحث باسم المتجر، المستلم، المرجع، أو الكود...">
+            </div>
+
+            <div class="filter-pills-row">
+                <div class="pills-group" id="filter-pills">
+                    <button type="button" class="pill-filter active" data-filter="all">جميع الحركات</button>
+                    <button type="button" class="pill-filter" data-filter="in">الوارد فقط (إيداعات)</button>
+                    <button type="button" class="pill-filter" data-filter="out">الصادر فقط (خصم)</button>
+                    <button type="button" class="pill-filter" data-filter="card">مشتريات البطاقة</button>
+                    <button type="button" class="pill-filter" data-filter="bills">فواتير وخدمات</button>
+                </div>
+
+                <div class="date-select-wrap">
+                    <select id="time-filter-select">
+                        <option value="current-month">الشهر الحالي</option>
+                        <option value="last-month">الشهر السابق</option>
+                        <option value="last-3-months">آخر 3 أشهر</option>
+                        <option value="all-time">كامل السجل التاريخي</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <!-- جدول العمليات المصرفية التفاعلي -->
+        <section class="transactions-table-card">
+            <div class="table-header-meta">
+                <h4>قائمة المعاملات المعتمدة (<span id="results-count">5</span>)</h4>
+                <span class="auto-sync-tag">⚡ التحديث لحظي ومطابق لنظام Core Banking</span>
+            </div>
+
+            <div class="table-responsive">
+                <table class="tx-data-table" id="tx-table">
+                    <thead>
+                        <tr>
+                            <th>تفاصيل المعاملة</th>
+                            <th>المرجع / القناة</th>
+                            <th>التاريخ والوقت</th>
+                            <th>المبلغ بالجنيه</th>
+                            <th>الحالة</th>
+                            <th>الإيصال</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tx-table-body">
+                        <!-- الصفوف تُضاف ديناميكياً بواسطة transactions.js من GET /api/transactions -->
+                    </tbody>
+                </table>
+
+                <div id="no-tx-found" class="no-data-notice hidden">
+                    <span class="no-data-icon">📂</span>
+                    <p>لا توجد أي معاملات مطابقة لمعايير البحث أو التصفية الحالية.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- نافذة إيصال المعاملة الرقمي (Digital Transaction Receipt Modal) -->
+    <div id="receipt-modal" class="modal-overlay hidden">
+        <div class="modal-card receipt-modal-box">
+            <div class="modal-header">
+                <h3>إيصال المعاملة المصرفية</h3>
+                <button type="button" id="close-receipt-modal" class="close-btn">&times;</button>
+            </div>
+            
+            <div class="receipt-paper" id="printable-receipt">
+                <div class="receipt-brand-head">
+                    <span class="r-bank-name">🏦 SecureBank Egypt</span>
+                    <small class="r-stamp">معتمد رقمياً</small>
+                </div>
+
+                <div class="receipt-main-amount">
+                    <span class="r-amt-label">قيمة المعاملة</span>
+                    <h2 id="modal-r-amount">+ 0.00 ج.م</h2>
+                    <span class="r-status-badge">عملية ناجحة ومقيدة في الحساب</span>
+                </div>
+
+                <div class="receipt-details-list">
+                    <div class="rd-row">
+                        <span>البيان / الوصف:</span>
+                        <strong id="modal-r-title">-</strong>
+                    </div>
+                    <div class="rd-row">
+                        <span>الطرف الآخر:</span>
+                        <strong id="modal-r-sub">-</strong>
+                    </div>
+                    <div class="rd-row">
+                        <span>رقم المرجع (Ref Number):</span>
+                        <strong id="modal-r-ref" class="mono-text">-</strong>
+                    </div>
+                    <div class="rd-row">
+                        <span>قناة التنفيذ:</span>
+                        <strong id="modal-r-channel">-</strong>
+                    </div>
+                    <div class="rd-row">
+                        <span>تاريخ وتوقيت العملية:</span>
+                        <strong id="modal-r-date">-</strong>
+                    </div>
+                    <div class="rd-row">
+                        <span>رسوم المعالجة:</span>
+                        <strong class="text-success" id="modal-r-fee">0.00 ج.م</strong>
+                    </div>
+                </div>
+
+                <div class="receipt-barcode-visual">
+                    <div class="mock-barcode">||||| | |||| ||| |||||| || ||| |||||</div>
+                    <small>تمت التسوية عبر البنية التحتية المصرفية المؤمنة</small>
+                </div>
+            </div>
+
+            <div class="receipt-actions">
+                <button type="button" class="btn-print-receipt" id="btn-print-receipt">طباعة الإيصال 🖨️</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/dashboard.js"></script>
+    <script src="assets/js/transactions.js"></script>
+</body>
+</html>

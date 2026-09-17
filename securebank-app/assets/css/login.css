@@ -1,0 +1,237 @@
+:root {
+    --primary-color: #0b3954;       /* كحلي بنكي داكن */
+    --primary-hover: #082638;
+    --accent-color: #087e8b;        /* تيل / تركواز متزن */
+    --bg-color: #f4f6f9;            /* رمادي فاتح مريح */
+    --card-bg: #ffffff;
+    --text-main: #1f2d3d;
+    --text-muted: #6b7c93;
+    --border-color: #dbe2ea;
+    --danger-color: #d9383a;
+    --danger-bg: #fde8e8;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Cairo', sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* الهيدر */
+.top-bar {
+    background: #ffffff;
+    border-bottom: 1px solid var(--border-color);
+    padding: 15px 0;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.security-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: var(--accent-color);
+    font-weight: 600;
+}
+
+/* بطاقة الدخول */
+.login-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 15px;
+}
+
+.login-card {
+    background: var(--card-bg);
+    width: 100%;
+    max-width: 440px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--border-color);
+    padding: 35px 30px;
+}
+
+.card-header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.card-header h2 {
+    color: var(--primary-color);
+    font-size: 22px;
+    margin-bottom: 8px;
+}
+
+.card-header p {
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+/* رسائل التنبيه */
+.alert {
+    background-color: var(--danger-bg);
+    color: var(--danger-color);
+    border: 1px solid #f8b4b4;
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-size: 13px;
+    margin-bottom: 18px;
+}
+
+.hidden {
+    display: none;
+}
+
+/* حقول الإدخال */
+.input-group {
+    margin-bottom: 18px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: var(--text-main);
+}
+
+.input-group input {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1.5px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 14px;
+    transition: border-color 0.2s;
+    outline: none;
+}
+
+.input-group input:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(8, 126, 139, 0.1);
+}
+
+.password-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.toggle-btn {
+    position: absolute;
+    left: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+    opacity: 0.6;
+}
+
+.toggle-btn:hover {
+    opacity: 1;
+}
+
+/* خيارات إضافية */
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12.5px;
+    margin-bottom: 22px;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    color: var(--text-muted);
+}
+
+.forgot-link {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.forgot-link:hover {
+    text-decoration: underline;
+}
+
+/* زر الدخول */
+.btn-primary {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--primary-color);
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+}
+
+.btn-primary:active {
+    transform: scale(0.99);
+}
+
+.card-footer {
+    text-align: center;
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+.card-footer a {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* تنبيه الأمان */
+.security-notice {
+    max-width: 440px;
+    margin-top: 20px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.6;
+}

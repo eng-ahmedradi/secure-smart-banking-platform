@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الخدمات المصرفية - SecureBank</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/global.css">
+    <link rel="stylesheet" href="assets/css/services.css">
+</head>
+<body>
+
+    <!-- الهيدر الموحد -->
+    <header class="site-header">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <span class="bank-icon">🏦</span>
+                <span class="bank-name">SecureBank</span>
+            </a>
+
+            <nav class="main-nav">
+                <a href="index.html">الرئيسية</a>
+                <a href="services.html" class="active">الخدمات المصرفية</a>
+                <a href="calculator.html">حاسبة التمويل</a>
+                <a href="public-cards.html">البطاقات</a>
+                <a href="about.html">عن البنك</a>
+            </nav>
+
+            <div class="header-actions">
+                <a href="login.html" class="btn-login-outline">تسجيل الدخول</a>
+                <a href="register.html" class="btn-register-solid">افتح حسابك الآن</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- بانر الصفحة العلوي المطور (Hero Media Banner) -->
+    <section class="services-hero-banner">
+        <!-- ضع صورة البانر العريضة هنا -->
+        <div class="banner-bg" style="background-image: url('assets/images/ser-um-1.avif');"></div>
+        <div class="banner-overlay"></div>
+        
+        <div class="container banner-content">
+            <span class="banner-badge">باقة المنتجات والحلول المالية</span>
+            <h1 class="banner-title">خدمات مصرفية استثنائية صُممت لتلائم طموحاتك</h1>
+            <p class="banner-desc">
+                اكتشف مجموعة شاملة من الحسابات الادخارية، والتسهيلات الائتمانية، وحلول الدفع الفوري التي تضمن لك أعلى عائد وأقصى درجات الأمان المالي.
+            </p>
+            <div class="banner-actions">
+                <a href="register.html" class="btn-banner-primary">انضم إلينا وافتح حسابك ←</a>
+                <a href="calculator.html" class="btn-banner-glass">احسب القسط التقديري</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- المحتوى الرئيسي والفلترة -->
+    <main class="services-container container">
+        <!-- أزرار الفلترة الأنيقة حسب الفئة -->
+        <div class="category-tabs-wrapper">
+            <div class="category-tabs">
+                <button type="button" class="tab-btn active" data-category="all">جميع المنتجات والخدمات</button>
+                <button type="button" class="tab-btn" data-category="personal">الأفراد والأوعية الادخارية</button>
+                <button type="button" class="tab-btn" data-category="business">الشركات وقطاع الأعمال</button>
+                <button type="button" class="tab-btn" data-category="digital">المدفوعات والصيرفة الرقمية</button>
+            </div>
+        </div>
+
+        <!-- شبكة كروت الخدمات المصورة الحديثة (Media Cards Grid) -->
+        <div class="services-grid" id="services-wrapper">
+            
+            <!-- كارت 1: حساب التوفير البلاتيني -->
+            <div class="service-media-card" data-category="personal">
+                <div class="card-image-box">
+                    <!-- ضع صورة الخدمة الأولى هنا -->
+                    <div class="card-img" style="background-image: url('assets/images/ser-num-2.avif');"></div>
+                    <span class="card-floating-badge badge-green">عائد شهري 21%</span>
+                </div>
+                <div class="card-content-box">
+                    <div class="card-main-info">
+                        <h3>حساب التوفير البلاتيني</h3>
+                        <p>عائد تنافسي يصرف شهرياً في حسابك، مع بطاقة خصم مباشر وسحب نقدي غير محدود من جميع ماكينات الصراف الآلي.</p>
+                        <ul class="srv-perks">
+                            <li><span class="check-icon">✓</span> بدون حد أدنى للرصيد لأول 6 أشهر</li>
+                            <li><span class="check-icon">✓</span> إمكانية ربط أوعية وشهادات ادخارية لحظياً</li>
+                        </ul>
+                    </div>
+                    <div class="srv-actions">
+                        <button type="button" class="btn-details" data-id="savings">شروط الخدمة</button>
+                        <a href="register.html" class="btn-apply">فتح حساب الآن</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- كارت 2: حساب الشركات -->
+            <div class="service-media-card" data-category="business">
+                <div class="card-image-box">
+                    <!-- ضع صورة الخدمة الثانية هنا -->
+                    <div class="card-img" style="background-image: url('assets/images/ser-num-3.avif');"></div>
+                    <span class="card-floating-badge badge-blue">للشركات والمؤسسات</span>
+                </div>
+                <div class="card-content-box">
+                    <div class="card-main-info">
+                        <h3>الحساب الجاري للشركات</h3>
+                        <p>حلول متقدمة لإدارة السيولة وتحويل رواتب الموظفين مع تسهيلات ائتمانية ودعم التوسع والنمو المالي لمؤسستك.</p>
+                        <ul class="srv-perks">
+                            <li><span class="check-icon">✓</span> دفاتر شيكات معتمدة ومصدقة للأنشطة التجارية</li>
+                            <li><span class="check-icon">✓</span> إدارة الصلاحيات المتعددة للمحاسبين والمديرين</li>
+                        </ul>
+                    </div>
+                    <div class="srv-actions">
+                        <button type="button" class="btn-details" data-id="business">شروط الخدمة</button>
+                        <a href="register.html" class="btn-apply">طلب فتح حساب</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- كارت 3: التحويل اللحظي IPN -->
+            <div class="service-media-card" data-category="digital">
+                <div class="card-image-box">
+                    <!-- ضع صورة الخدمة الثالثة هنا -->
+                    <div class="card-img" style="background-image: url('assets/images/photo-1563986768609-322da13575f3.avif');"></div>
+                    <span class="card-floating-badge badge-purple">فوري 24/7 مجاناً</span>
+                </div>
+                <div class="card-content-box">
+                    <div class="card-main-info">
+                        <h3>التحويل اللحظي (IPN)</h3>
+                        <p>اربط حسابك المصرفي واستقبل وحول الأموال فورياً لأي بنك أو محفظة إلكترونية داخل مصر بضغطة زر وبدون رسوم.</p>
+                        <ul class="srv-perks">
+                            <li><span class="check-icon">✓</span> تسوية مالية وتحويل في ثوانٍ معدودة</li>
+                            <li><span class="check-icon">✓</span> التحويل برقم الهاتف أو معرّف الدفع اللحظي</li>
+                        </ul>
+                    </div>
+                    <div class="srv-actions">
+                        <button type="button" class="btn-details" data-id="ipn">شروط الخدمة</button>
+                        <a href="login.html" class="btn-apply">استخدام الخدمة</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- كارت 4: القروض والتمويلات -->
+            <div class="service-media-card" data-category="personal">
+                <div class="card-image-box">
+                    <!-- ضع صورة الخدمة الرابعة هنا -->
+                    <div class="card-img" style="background-image: url('assets/images/ser-num-4.avif');"></div>
+                    <span class="card-floating-badge badge-gold">سداد ميسر حتى 7 سنوات</span>
+                </div>
+                <div class="card-content-box">
+                    <div class="card-main-info">
+                        <h3>التمويل الشخصي وتمويل السيارات</h3>
+                        <p>تمويل يصل إلى 2,000,000 ج.م بمرونة كاملة في فترات السداد، وتأمين مجاني على الحياة طوال فترة سداد الأقساط.</p>
+                        <ul class="srv-perks">
+                            <li><span class="check-icon">✓</span> موافقة ائتمانية ميسرة وسريعة خلال 48 ساعة</li>
+                            <li><span class="check-icon">✓</span> إمكانية السداد الجزئي أو الكلي المبكر بأقل الرسوم</li>
+                        </ul>
+                    </div>
+                    <div class="srv-actions">
+                        <button type="button" class="btn-details" data-id="loans">شروط الخدمة</button>
+                        <a href="calculator.html" class="btn-apply">احسب قسطك</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- نافذة تفاصيل الخدمة والشروط (Modal زجاجي أنيق) -->
+    <div id="service-modal" class="modal-overlay hidden">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 id="modal-service-title">تفاصيل وضوابط الخدمة</h3>
+                <button type="button" id="close-service-modal" class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body" id="modal-service-body">
+                <!-- يُملأ بالـ JS ديناميكياً -->
+            </div>
+            <div class="modal-footer">
+                <a href="register.html" class="btn-register-solid" style="display: block; text-align: center;">التقديم على هذه الخدمة الآن</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- الفوتر الموحد -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <div class="logo white">
+                    <span class="bank-icon">🏦</span>
+                    <span class="bank-name">SecureBank</span>
+                </div>
+                <p>البنك الرقمي الرائد في تقديم الحلول المصرفية السحابية الآمنة تحت إشراف ورقابة البنك المركزي المصري.</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>روابط سريعة</h4>
+                <ul>
+                    <li><a href="services.html">الخدمات المصرفية</a></li>
+                    <li><a href="calculator.html">حاسبة التمويل</a></li>
+                    <li><a href="public-cards.html">البطاقات</a></li>
+                    <li><a href="about.html">عن البنك</a></li>
+                    <li><a href="login.html">تسجيل الدخول</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>خدمة العملاء</h4>
+                <p>الخط الساخن: <strong>19888</strong> (متاح 24/7)</p>
+                <p>البريد الإلكتروني: <strong>support@securebank.com</strong></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 SecureBank. جميع الحقوق محفوظة ومحمية بنكياً.</p>
+        </div>
+    </footer>
+
+    <script src="assets/js/main-nav.js"></script>
+    <script src="assets/js/services.js"></script>
+</body>
+</html>
