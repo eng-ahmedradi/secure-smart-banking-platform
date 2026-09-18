@@ -1,4 +1,4 @@
-name: CI/CD - Build and Push
+name: CI/CD - Build, Push and Deploy
 
 on:
   push:
@@ -15,10 +15,19 @@ permissions:
 env:
   AWS_REGION: eu-north-1
   AWS_ACCOUNT_ID: "244924579400"
+
   BACKEND_REPOSITORY: secure-banking-backend
   FRONTEND_REPOSITORY: secure-banking-frontend
 
+  ECS_CLUSTER: secure-banking-cluster
+  BACKEND_SERVICE: secure-banking-backend-task-service-q29fkw3i
+  FRONTEND_SERVICE: secure-banking-frontend-service
+
+  BACKEND_TASK_FAMILY: secure-banking-backend-task
+  FRONTEND_TASK_FAMILY: secure-banking-frontend-task
+
 jobs:
+
   backend-test:
     name: Backend Build & Test
     runs-on: ubuntu-latest
@@ -38,10 +47,13 @@ jobs:
         working-directory: backend
         run: mvn -B test package
 
+
   ecr:
     name: Build and Push Images
     runs-on: ubuntu-latest
     needs: backend-test
+
+    if: github.event_name == 'push' && github.ref == 'refs/heads/devops'
 
     steps:
       - name: Checkout
@@ -82,3 +94,149 @@ jobs:
         run: |
           docker push ${{ env.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ env.FRONTEND_REPOSITORY }}:${{ github.sha }}
           docker push ${{ env.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ env.FRONTEND_REPOSITORY }}:latest
+
+
+  deploy:
+    name: Deploy to ECS
+    runs-on: ubuntu-latest
+    needs: ecr
+
+    if: github.event_name == 'push' && github.ref == 'refs/heads/devops'
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::244924579400:role/GitHubActionsSecureBankingRole
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Verify AWS Identity
+        run: aws sts get-caller-identity
+
+      - name: Prepare Backend Task Definition
+        env:
+          BACKEND_IMAGE: ${{ env.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ env.BACKEND_REPOSITORY }}:${{ github.sha }}
+        run: |
+          aws ecs describe-task-definition \
+            --task-definition ${{ env.BACKEND_TASK_FAMILY }} \
+            --query 'taskDefinition' \
+            --output json > backend-task-definition-source.json
+
+          jq --arg IMAGE "$BACKEND_IMAGE" '
+            del(
+              .taskDefinitionArn,
+              .revision,
+              .status,
+              .requiresAttributes,
+              .compatibilities,
+              .registeredAt,
+              .registeredBy
+            )
+            | (.containerDefinitions[] | select(.name == "Main")).image = $IMAGE
+          ' backend-task-definition-source.json > backend-task-definition-deploy.json
+
+      - name: Register Backend Task Definition
+        id: backend-task
+        run: |
+          BACKEND_TASK_ARN=$(aws ecs register-task-definition \
+            --cli-input-json file://backend-task-definition-deploy.json \
+            --query 'taskDefinition.taskDefinitionArn' \
+            --output text)
+
+          echo "BACKEND_TASK_ARN=$BACKEND_TASK_ARN" >> "$GITHUB_ENV"
+          echo "Registered backend task: $BACKEND_TASK_ARN"
+
+      - name: Deploy Backend to ECS
+        run: |
+          aws ecs update-service \
+            --cluster "${{ env.ECS_CLUSTER }}" \
+            --service "${{ env.BACKEND_SERVICE }}" \
+            --task-definition "$BACKEND_TASK_ARN" \
+            --deployment-configuration "deploymentCircuitBreaker={enable=true,rollback=true}"
+
+      - name: Wait for Backend Stability
+        run: |
+          aws ecs wait services-stable \
+            --cluster "${{ env.ECS_CLUSTER }}" \
+            --services "${{ env.BACKEND_SERVICE }}"
+
+      - name: Verify Backend Deployment
+        run: |
+          aws ecs describe-services \
+            --cluster "${{ env.ECS_CLUSTER }}" \
+            --services "${{ env.BACKEND_SERVICE }}" \
+            --query 'services[0].{Status:status,Running:runningCount,Desired:desiredCount,TaskDefinition:taskDefinition}' \
+            --output table
+
+
+      - name: Prepare Frontend Task Definition
+        env:
+          FRONTEND_IMAGE: ${{ env.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ env.FRONTEND_REPOSITORY }}:${{ github.sha }}
+        run: |
+          aws ecs describe-task-definition \
+            --task-definition ${{ env.FRONTEND_TASK_FAMILY }} \
+            --query 'taskDefinition' \
+            --output json > frontend-task-definition-source.json
+
+          jq --arg IMAGE "$FRONTEND_IMAGE" '
+            del(
+              .taskDefinitionArn,
+              .revision,
+              .status,
+              .requiresAttributes,
+              .compatibilities,
+              .registeredAt,
+              .registeredBy
+            )
+            | (.containerDefinitions[] | select(.name == "Frontend")).image = $IMAGE
+          ' frontend-task-definition-source.json > frontend-task-definition-deploy.json
+
+      - name: Register Frontend Task Definition
+        id: frontend-task
+        run: |
+          FRONTEND_TASK_ARN=$(aws ecs register-task-definition \
+            --cli-input-json file://frontend-task-definition-deploy.json \
+            --query 'taskDefinition.taskDefinitionArn' \
+            --output text)
+
+          echo "FRONTEND_TASK_ARN=$FRONTEND_TASK_ARN" >> "$GITHUB_ENV"
+          echo "Registered frontend task: $FRONTEND_TASK_ARN"
+
+      - name: Deploy Frontend to ECS
+        run: |
+          aws ecs update-service \
+            --cluster "${{ env.ECS_CLUSTER }}" \
+            --service "${{ env.FRONTEND_SERVICE }}" \
+            --task-definition "$FRONTEND_TASK_ARN" \
+            --deployment-configuration "deploymentCircuitBreaker={enable=true,rollback=true}"
+
+      - name: Wait for Frontend Stability
+        run: |
+          aws ecs wait services-stable \
+            --cluster "${{ env.ECS_CLUSTER }}" \
+            --services "${{ env.FRONTEND_SERVICE }}"
+
+      - name: Verify Frontend Deployment
+        run: |
+          aws ecs describe-services \
+            --cluster "${{ env.ECS_CLUSTER }}" \
+            --services "${{ env.FRONTEND_SERVICE }}" \
+            --query 'services[0].{Status:status,Running:runningCount,Desired:desiredCount,TaskDefinition:taskDefinition}' \
+            --output table
+
+      - name: Application Smoke Test
+        run: |
+          URL="http://secure-banking-alb-1808965792.eu-north-1.elb.amazonaws.com/"
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" "$URL")
+
+          echo "Application HTTP status: $STATUS"
+
+          if [ "$STATUS" != "200" ]; then
+            echo "Application smoke test failed."
+            exit 1
+          fi
+
+          echo "Application smoke test passed."
